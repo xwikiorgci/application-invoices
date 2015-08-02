@@ -1,2 +1,2 @@
 # xwiki-invoices
-Generate and manager invoices
+Generate and manage invoices

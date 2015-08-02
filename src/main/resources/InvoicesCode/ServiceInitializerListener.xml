@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc>
+  <web>InvoicesCode</web>
+  <name>ServiceInitializerListener</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent/>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1433072668000</creationDate>
+  <date>1434291348000</date>
+  <contentUpdateDate>1433074312000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <object>
+    <class>
+      <name>XWiki.ComponentClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <roleHint>
+        <disabled>0</disabled>
+        <name>roleHint</name>
+        <number>2</number>
+        <prettyName>Component Role Hint</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </roleHint>
+      <roleType>
+        <disabled>0</disabled>
+        <name>roleType</name>
+        <number>1</number>
+        <prettyName>Component Role Type</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </roleType>
+      <scope>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>scope</name>
+        <number>3</number>
+        <prettyName>Component Scope</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators>|, </separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>wiki=Current Wiki|user=Current User|global=Global</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </scope>
+    </class>
+    <name>InvoicesCode.ServiceInitializerListener</name>
+    <number>0</number>
+    <className>XWiki.ComponentClass</className>
+    <guid>2770909a-158b-474c-8e45-217d16cbc499</guid>
+    <property>
+      <roleHint>InvoicesCode.ScriptService</roleHint>
+    </property>
+    <property>
+      <roleType>org.xwiki.observation.EventListener</roleType>
+    </property>
+    <property>
+      <scope>wiki</scope>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.ComponentInterfaceClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Interface Qualified Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+    </class>
+    <name>InvoicesCode.ServiceInitializerListener</name>
+    <number>0</number>
+    <className>XWiki.ComponentInterfaceClass</className>
+    <guid>b1b79ccb-dd86-4388-b785-2e1cd0f033e2</guid>
+    <property>
+      <name>org.xwiki.component.phase.Initializable</name>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.ComponentMethodClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Method body code</prettyName>
+        <rows>20</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Method name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+    </class>
+    <name>InvoicesCode.ServiceInitializerListener</name>
+    <number>0</number>
+    <className>XWiki.ComponentMethodClass</className>
+    <guid>63516a9d-523c-43ab-ade1-de03773bd9be</guid>
+    <property>
+      <code>{{groovy}}
+import org.apache.commons.lang3.StringUtils;
+import org.xwiki.model.reference.LocalDocumentReference;
+
+import com.xpn.xwiki.objects.BaseObject;
+
+public class InvoiceCustomer
+{
+    public static final LocalDocumentReference INVOICECUSTOMERCLASS_REFERENCE = new LocalDocumentReference(
+        "InvoicesCode", "InvoiceCustomerClass");
+
+    protected String customerUser;
+
+    protected String customerEmail;
+
+    protected String customerName;
+
+    protected String customerAddress;
+
+    protected String customerCompany;
+
+    public String getCustomerUser()
+    {
+        return this.customerUser;
+    }
+
+    public String getCustomerEmail()
+    {
+        return this.customerEmail;
+    }
+
+    public String getCustomerName()
+    {
+        return this.customerName;
+    }
+
+    public String getCustomerAddress()
+    {
+        return this.customerAddress;
+    }
+
+    public String getCustomerCompany()
+    {
+        return this.customerCompany;
+    }
+
+    // Write
+
+    protected void setCustomerUser(String customerUser)
+    {
+        this.customerUser = customerUser;
+    }
+
+    protected void setCustomerEmail(String customerEmail)
+    {
+        this.customerEmail = customerEmail;
+    }
+
+    protected void setCustomerName(String customerName)
+    {
+        this.customerName = customerName;
+    }
+
+    protected void setCustomerAddress(String customerAddress)
+    {
+        this.customerAddress = customerAddress;
+    }
+
+    protected void setCustomerCompany(String customerCompany)
+    {
+        this.customerCompany = customerCompany;
+    }
+
+    protected void set(BaseObject customerObject)
+    {
+        String customer_name = customerObject.getStringValue("customer_name");
+        if (StringUtils.isNotEmpty(customer_name)) {
+            setCustomerName(customer_name);
+        }
+        String customer_email = customerObject.getStringValue("customer_email");
+        if (StringUtils.isNotEmpty(customer_email)) {
+            setCustomerEmail(customer_email);
+        }
+        String customer_address = customerObject.getStringValue("customer_address");
+        if (StringUtils.isNotEmpty(customer_address)) {
+            setCustomerAddress(customer_address);
+        }
+        String customer_company = customerObject.getStringValue("customer_company");
+        if (StringUtils.isNotEmpty(customer_company)) {
+            setCustomerCompany(customer_company);
+        }
+    }
+}
+import java.util.Date;
+
+import org.xwiki.model.reference.LocalDocumentReference;
+
+import com.xpn.xwiki.doc.XWikiDocument;
+import com.xpn.xwiki.objects.BaseObject;
+
+public class Invoice
+{
+    public static final LocalDocumentReference INVOICECLASS_REFERENCE = new LocalDocumentReference("InvoicesCode",
+        "InvoiceClass");
+
+    protected XWikiDocument document;
+
+    private BaseObject xobject;
+
+    public static boolean isInvoice(XWikiDocument document)
+    {
+        return document.getXObject(INVOICECLASS_REFERENCE) != null;
+    }
+
+    public static Invoice toInvoice(XWikiDocument document)
+    {
+        if (isInvoice(document)) {
+            return new Invoice(document);
+        }
+
+        return null;
+    }
+
+    public Invoice(XWikiDocument document)
+    {
+        this.document = document;
+    }
+
+    public String getCustomerUser()
+    {
+        return getXObject().getStringValue("customer_user");
+    }
+
+    public String getCustomerEmail()
+    {
+        return getXObject().getStringValue("customer_email");
+    }
+
+    public String getCustomerName()
+    {
+        return getXObject().getStringValue("customer_name");
+    }
+
+    public String getCustomerAddress()
+    {
+        return getXObject().getStringValue("customer_address");
+    }
+
+    public String getCustomerCompany()
+    {
+        return getXObject().getStringValue("customer_company");
+    }
+
+    public Date getDate()
+    {
+        return getXObject().getDateValue("date");
+    }
+
+    public Date getInvoiceDate()
+    {
+        return this.document.getCreationDate();
+    }
+
+    public double getVAT()
+    {
+        return getXObject().getDoubleValue("vat");
+    }
+
+    public double getPrice()
+    {
+        return getXObject().getDoubleValue("price");
+    }
+
+    public double getPriceATI()
+    {
+        double price = getPrice();
+
+        return (price * (100 - getPriceATI())) / 100;
+    }
+
+    public String getCurrency()
+    {
+        return getXObject().getStringValue("currency");
+    }
+
+    public String getType()
+    {
+        return getXObject().getStringValue("type");
+    }
+
+    public String getProduct()
+    {
+        return getXObject().getStringValue("product");
+    }
+
+    // Write
+
+    protected BaseObject getXObject()
+    {
+        if (this.xobject == null) {
+            this.xobject = this.document.getXObject(INVOICECLASS_REFERENCE);
+        }
+
+        return this.xobject;
+    }
+
+    protected XWikiDocument getDocument()
+    {
+        return this.document;
+    }
+
+    protected void setCustomerUser(String customerUser)
+    {
+        getXObject().setStringValue("customer_user", customerUser);
+    }
+
+    protected void setCustomerEmail(String customerEmail)
+    {
+        getXObject().setStringValue("customer_email", customerEmail);
+    }
+
+    protected void setCustomerName(String customerName)
+    {
+        getXObject().setStringValue("customer_name", customerName);
+    }
+
+    protected void setCustomerAddress(String customerAddress)
+    {
+        getXObject().setStringValue("customer_address", customerAddress);
+    }
+
+    protected void setCustomerCompany(String customerCompany)
+    {
+        getXObject().setStringValue("customer_company", customerCompany);
+    }
+
+    protected void setDate(Date date)
+    {
+        getXObject().setDateValue("date", date);
+    }
+
+    protected void setVAT(double vat)
+    {
+        getXObject().setDoubleValue("vat", vat);
+    }
+
+    protected void setPrice(double price)
+    {
+        getXObject().setDoubleValue("price", price);
+    }
+
+    protected void setCurrency(String currency)
+    {
+        getXObject().setStringValue("currency", currency);
+    }
+
+    protected void setType(String type)
+    {
+        getXObject().setStringValue("type", type);
+    }
+
+    protected void setProduct(String product)
+    {
+        getXObject().setStringValue("product", product);
+    }
+}
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.activation.DataHandler;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Provider;
+import javax.mail.Multipart;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.util.ByteArrayDataSource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.xwiki.component.annotation.Component;
+import org.xwiki.mail.MailListener;
+import org.xwiki.mail.MailSender;
+import org.xwiki.model.reference.DocumentReference;
+import org.xwiki.model.reference.DocumentReferenceResolver;
+import org.xwiki.model.reference.LocalDocumentReference;
+import org.xwiki.model.reference.WikiReference;
+import org.xwiki.query.Query;
+import org.xwiki.query.QueryException;
+import org.xwiki.query.QueryManager;
+import org.xwiki.script.service.ScriptServiceManager;
+
+import com.xpn.xwiki.XWikiContext;
+import com.xpn.xwiki.XWikiException;
+import com.xpn.xwiki.doc.XWikiDocument;
+import com.xpn.xwiki.objects.BaseObject;
+import com.xpn.xwiki.pdf.api.PdfExport;
+import com.xpn.xwiki.pdf.impl.PdfExportImpl;
+import com.xpn.xwiki.pdf.impl.PdfURLFactory;
+import com.xpn.xwiki.user.api.XWikiRightService;
+import com.xpn.xwiki.web.XWikiURLFactory;
+
+@Component(roles = InvoiceManager.class)
+public class InvoiceManager
+{
+    public static final LocalDocumentReference CONFIGURATIONCLASS_REFERENCE = new LocalDocumentReference(
+        "InvoicesCode", "InvoiceConfigurationClass");
+
+    public static final LocalDocumentReference MAIL_TEMPLATE_REFERENCE = new LocalDocumentReference("InvoicesCode",
+        "MailTemplate");
+
+    @Inject
+    private Provider&lt;XWikiContext&gt; xcontextProvider;
+
+    @Inject
+    @Named("current")
+    private DocumentReferenceResolver&lt;String&gt; resolver;
+
+    @Inject
+    private ScriptServiceManager services;
+
+    @Inject
+    private QueryManager queryManager;
+
+    @Inject
+    private MailSender mailSender;
+
+    @Inject
+    @Named("memory")
+    private MailListener mailListener;
+
+    public InvoiceCustomer getInvoiceCustomer(String userReference) throws XWikiException
+    {
+        return getInvoiceCustomer(resolver.resolve(userReference));
+    }
+
+    public InvoiceCustomer getInvoiceCustomer(DocumentReference userReference) throws XWikiException
+    {
+        InvoiceCustomer invoiceCustomer = new InvoiceCustomer();
+
+        setInvoiceCustomer(invoiceCustomer, userReference);
+
+        return invoiceCustomer;
+    }
+
+    public void setInvoiceCustomer(InvoiceCustomer invoiceCustomer, DocumentReference userReference)
+        throws XWikiException
+    {
+        Set&lt;DocumentReference&gt; users = new HashSet&lt;&gt;();
+        setInvoiceCustomer(invoiceCustomer, userReference, users);
+    }
+
+    public void setInvoiceCustomer(InvoiceCustomer invoiceCustomer, DocumentReference userReference,
+        Set&lt;DocumentReference&gt; users) throws XWikiException
+    {
+        if (users.contains(userReference)) {
+            return;
+        }
+
+        // Remember that we started reading this user
+        users.add(userReference);
+
+        XWikiContext xcontext = this.xcontextProvider.get();
+
+        // Get user profile
+        XWikiDocument userDocument = xcontext.getWiki().getDocument(userReference, xcontext);
+
+        // If user exist
+        if (!userDocument.isNew()) {
+            BaseObject customerObject = userDocument.getXObject(InvoiceCustomer.INVOICECUSTOMERCLASS_REFERENCE);
+
+            // Initialize with user profile
+            invoiceCustomer.setCustomerName(xcontext.getWiki().getUserName(userDocument.getDocumentReference(), null,
+                false, false, xcontext));
+            invoiceCustomer.setCustomerEmail(userDocument.getStringValue("email"));
+            invoiceCustomer.setCustomerAddress(userDocument.getStringValue("address"));
+            invoiceCustomer.setCustomerCompany(userDocument.getStringValue("company"));
+
+            // Overwrite with customer object if any
+            if (customerObject != null) {
+                // If any user set overwrite information with it
+                String customer_user = customerObject.getStringValue("customer_user");
+                if (StringUtils.isNoneEmpty(customer_user)) {
+                    setInvoiceCustomer(invoiceCustomer, this.resolver.resolve(customer_user));
+                }
+
+                // Overwrite with explicit properties
+                invoiceCustomer.set(customerObject);
+            }
+        }
+    }
+
+    public void notify(long number) throws XWikiException
+    {
+        Invoice invoice = getInvoice(number);
+
+        if (invoice != null) {
+            notify(invoice);
+        }
+    }
+
+    public void notify(Invoice invoice)
+    {
+        XWikiContext xcontext = this.xcontextProvider.get();
+
+        Map&lt;String, Object&gt; parameters = new HashMap&lt;String, Object&gt;();
+
+        parameters.put("language", xcontext.getLocale().toString());
+
+        Map&lt;String, Object&gt; velocityVariables = new HashMap&lt;String, Object&gt;();
+        velocityVariables.put("invoice", invoice);
+
+        parameters.put("velocityVariables", velocityVariables);
+
+        Map&lt;String, Object&gt; configuration = getConfiguration();
+
+        // Set customer mail
+        if (configuration.containsKey("email")) {
+            parameters.put("from", (String) configuration.get("email"));
+        }
+        parameters.put("to", invoice.getCustomerEmail());
+
+        MimeMessage message =
+            this.services.mailsender.createMessage("template", new DocumentReference(MAIL_TEMPLATE_REFERENCE,
+                new WikiReference(xcontext.getWikiId())), parameters);
+
+        if (message == null) {
+            Exception error = this.services.mailsender.getLastError();
+            if (error != null) {
+                throw error;
+            }
+        }
+
+        // Generate and attach PDF
+        byte[] pdf = generatePDF(invoice.document);
+        MimeBodyPart attachmentPart = new MimeBodyPart();
+        attachmentPart.setDataHandler(new DataHandler(new ByteArrayDataSource(pdf, "application/pdf")));
+        attachmentPart.setHeader("Content-Type", "application/pdf");
+        attachmentPart.setFileName(invoice.getProduct() + "-" + invoice.getDate() + ".pdf");
+        message.getMultipart().addBodyPart(attachmentPart);
+
+        // Send mail
+        XWikiDocument xdocument = xcontext.getDoc();
+        DocumentReference currentAuthor = xdocument.getContentAuthorReference();
+        try {
+            // Hack to make sure we have programming right
+            xdocument.setContentAuthor(XWikiRightService.SUPERADMIN_USER);
+
+            this.services.mailsender.send(message);
+        } finally {
+            xdocument.setContentAuthorReference(currentAuthor);
+        }
+    }
+
+    public Invoice getInvoice(long number) throws XWikiException
+    {
+        return new Invoice(getDocument(number));
+    }
+
+    private XWikiDocument getDocument(long number) throws XWikiException
+    {
+        XWikiContext xcontext = this.xcontextProvider.get();
+
+        return xcontext.getWiki().getDocument(
+            new DocumentReference(xcontext.getWikiId(), "Invoices", "Invoice" + number), xcontext);
+    }
+
+    public byte[] generatePDF(XWikiDocument invoiceDocument) throws XWikiException
+    {
+        XWikiContext xcontext = this.xcontextProvider.get();
+
+        XWikiURLFactory urlFactory = new PdfURLFactory();
+        PdfExport exporter = new PdfExportImpl();
+
+        urlFactory.init(xcontext);
+        xcontext.setURLFactory(urlFactory);
+
+        ByteArrayOutputStream pdfStream = new ByteArrayOutputStream(4096);
+
+        exporter.exportToPDF(invoiceDocument, pdfStream, xcontext);
+
+        return pdfStream.toByteArray();
+    }
+
+    public Map&lt;String, Object&gt; getConfiguration() throws XWikiException
+    {
+        XWikiContext xcontext = this.xcontextProvider.get();
+
+        // Get invoice document
+        XWikiDocument homeDocument =
+            xcontext.getWiki()
+                .getDocument(new DocumentReference(xcontext.getWikiId(), "Invoices", "WebHome"), xcontext);
+
+        BaseObject configurationObject = homeDocument.getXObject(CONFIGURATIONCLASS_REFERENCE);
+
+        Map&lt;String, Object&gt; configuration = new HashMap&lt;String, Object&gt;();
+
+        // The email to use as sender
+        configuration.put("email", configurationObject.getStringValue("email"));
+
+        // The mapping used to associate a price to a field value in the user profile
+        String invoiceField = configurationObject.getStringValue("invoiceField");
+        if (invoiceField != null) {
+            configuration.put("invoiceField", invoiceField);
+
+            List&lt;String&gt; invoiceMappingString = configurationObject.getListValue("invoiceMapping");
+            Map&lt;String, String&gt; invoiceMapping = new HashMap&lt;String, String&gt;();
+            for (String invoicePriceMapping : invoiceMappingString) {
+                int index = invoicePriceMapping.indexOf('=');
+                invoiceMapping.put(invoicePriceMapping.substring(0, index), invoicePriceMapping.substring(index + 1));
+            }
+            configuration.put("invoiceMapping", invoiceMapping);
+        }
+
+        return configuration;
+    }
+
+    public void addInvoice(Map&lt;String, Object&gt; invoiceMap, String comment) throws QueryException, XWikiException
+    {
+        Long number = (Long) invoiceMap.remove("number");
+        if (number == null) {
+            number = Long.valueOf(getNewNumber());
+        }
+
+        XWikiContext xcontext = this.xcontextProvider.get();
+
+        // Get invoice document
+        XWikiDocument invoiceDocument =
+            xcontext.getWiki().getDocument(new DocumentReference(xcontext.getWikiId(), "Invoices", "Invoice" + number),
+                xcontext);
+        BaseObject invoiceObject = invoiceDocument.getXObject(Invoice.INVOICECLASS_REFERENCE, true, xcontext);
+
+        // Add number
+        invoiceObject.set("number", number, xcontext);
+
+        // Add parameters
+        for (Map.Entry&lt;String, Object&gt; entry : invoiceMap.entrySet()) {
+            invoiceObject.set(entry.getKey(), entry.getValue(), xcontext);
+        }
+
+        // Save document
+        xcontext.getWiki().saveDocument(invoiceDocument, comment, xcontext);
+    }
+
+    public long getNewNumber() throws QueryException
+    {
+        def query =
+            this.queryManager.createQuery("select invoice.number "
+                + "from Document doc, doc.object(InvoicesCode.InvoiceClass) as invoice "
+                + "where doc.space = 'Invoices' AND invoice.number &gt; 0" + "ORDER BY invoice.number DESC", Query.XWQL);
+        query.setLimit(1);
+
+        def invoices = query.execute();
+
+        def newNumber;
+        if (invoices.isEmpty()) {
+            newNumber = 0;
+        } else {
+            newNumber = invoices.get(0);
+        }
+
+        return newNumber + 1;
+    }
+}
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+import org.apache.commons.lang3.StringUtils;
+import org.xwiki.bridge.event.DocumentCreatedEvent;
+import org.xwiki.component.annotation.Component;
+import org.xwiki.observation.AbstractEventListener;
+import org.xwiki.observation.event.Event;
+
+import com.xpn.xwiki.doc.XWikiDocument;
+
+@Component
+@Named("InvoiceNotificationsListener")
+@Singleton
+public class InvoiceNotificationsListener extends AbstractEventListener
+{
+    @Inject
+    private InvoiceManager invoiceManager;
+
+    public InvoiceNotificationsListener()
+    {
+        super(InvoiceNotificationsListener.class.getName() + InvoiceNotificationsListener.class.hashCode(),
+            new DocumentCreatedEvent());
+    }
+
+    @Override
+    public void onEvent(Event event, Object source, Object data)
+    {
+        XWikiDocument document = (XWikiDocument) source;
+
+        Invoice invoice = Invoice.toInvoice(document);
+
+        if (invoice != null &amp;&amp; StringUtils.isNotEmpty(invoice.getCustomerEmail())) {
+            this.invoiceManager.notify(invoice);
+        }
+    }
+}
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.xwiki.bridge.event.DocumentCreatingEvent;
+import org.xwiki.component.annotation.Component;
+import org.xwiki.observation.AbstractEventListener;
+import org.xwiki.observation.event.Event;
+
+import com.xpn.xwiki.XWikiException;
+import com.xpn.xwiki.doc.XWikiDocument;
+
+@Component
+@Named("InvoicesResolverListener")
+@Singleton
+public class InvoiceResolverListener extends AbstractEventListener
+{
+    @Inject
+    private Logger logger;
+
+    @Inject
+    private InvoiceManager invoiceManager;
+
+    public InvoiceResolverListener()
+    {
+        super(InvoiceResolverListener.class.getName() + InvoiceResolverListener.class.hashCode(),
+            new DocumentCreatingEvent());
+    }
+
+    @Override
+    public void onEvent(Event event, Object source, Object data)
+    {
+        XWikiDocument document = (XWikiDocument) source;
+
+        Invoice invoice = Invoice.toInvoice(document);
+
+        if (invoice != null) {
+            // Get user id
+            String customerUser = invoice.getCustomerUser();
+
+            // If there is a user id associated to the invoice
+            if (StringUtils.isNotEmpty(customerUser)) {
+                try {
+                    // Get user customer informations
+                    InvoiceCustomer customer = this.invoiceManager.getInvoiceCustomer(customerUser);
+
+                    String customerName = invoice.getCustomerName();
+                    if (StringUtils.isEmpty(customerName) &amp;&amp; customer.getCustomerName() != null) {
+                        invoice.setCustomerName(customer.getCustomerName());
+                    }
+
+                    String customerEmail = invoice.getCustomerEmail();
+                    if (StringUtils.isEmpty(customerEmail) &amp;&amp; customer.getCustomerEmail() != null) {
+                        invoice.setCustomerEmail(customer.getCustomerEmail());
+                    }
+
+                    String customerAddress = invoice.getCustomerAddress();
+                    if (StringUtils.isEmpty(customerAddress) &amp;&amp; customer.getCustomerAddress() != null) {
+                        invoice.setCustomerAddress(customer.getCustomerAddress());
+                    }
+
+                    String customerCompany = invoice.getCustomerCompany();
+                    if (StringUtils.isEmpty(customerCompany) &amp;&amp; customer.getCustomerCompany() != null) {
+                        invoice.setCustomerCompany(customer.getCustomerCompany());
+                    }
+                } catch (XWikiException e) {
+                    this.logger.error("Failed to update invoice document [{}]", customerUser, e);
+                }
+            }
+        }
+    }
+}
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
+import javax.mail.internet.MimeMessage;
+
+import org.xwiki.component.annotation.Component;
+import org.xwiki.mail.MimeMessageFactory;
+import org.xwiki.model.reference.DocumentReference;
+import org.xwiki.query.QueryException;
+import org.xwiki.script.service.ScriptService;
+
+import com.xpn.xwiki.XWikiException;
+
+@Component
+@Named("invoice")
+@Singleton
+public class InvoiceScriptService implements ScriptService
+{
+    @Inject
+    @Named("template")
+    private MimeMessageFactory&lt;MimeMessage&gt; templateMessageactory;
+
+    @Inject
+    private InvoiceManager invoiceManager;
+
+    public long getNewNumber() throws QueryException
+    {
+        return this.invoiceManager.getNewNumber();
+    }
+
+    public Invoice getInvoice(long number) throws XWikiException
+    {
+        return this.invoiceManager.getInvoice(number);
+    }
+
+    public void addInvoice(Map&lt;String, Object&gt; invoiceMap, String comment) throws QueryException, XWikiException
+    {
+        this.invoiceManager.addInvoice(invoiceMap, comment);
+    }
+
+    public void notify(long number) throws XWikiException
+    {
+        this.invoiceManager.notify(number);
+    }
+
+    public InvoiceCustomer getInvoiceCustomer(DocumentReference userReference) throws XWikiException
+    {
+        return this.invoiceManager.getInvoiceCustomer(userReference);
+    }
+}
+
+
+
+
+// Script
+
+def componentManager = services.component.getComponentManager('wiki:' + services.wiki.currentWikiId)
+def loader = new org.xwiki.component.annotation.ComponentAnnotationLoader();
+
+def descriptors;
+
+// Register InvoiceManager
+
+descriptors = loader.getComponentsDescriptors(InvoiceManager.class)
+for (descriptor in descriptors) {
+    componentManager.registerComponent(descriptor);
+}
+
+// Register InvoiceNotificationsListener
+
+descriptors = loader.getComponentsDescriptors(InvoiceNotificationsListener.class)
+for (descriptor in descriptors) {
+    componentManager.registerComponent(descriptor);
+}
+
+// Register InvoiceResolverListener
+
+descriptors = loader.getComponentsDescriptors(InvoiceResolverListener.class)
+for (descriptor in descriptors) {
+    componentManager.registerComponent(descriptor);
+}
+
+// Register InvoicesScriptService
+
+descriptors = loader.getComponentsDescriptors(InvoiceScriptService.class)
+for (descriptor in descriptors) {
+    componentManager.registerComponent(descriptor);
+}
+{{/groovy}}</code>
+    </property>
+    <property>
+      <name>initialize</name>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.ComponentMethodClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Method body code</prettyName>
+        <rows>20</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Method name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+    </class>
+    <name>InvoicesCode.ServiceInitializerListener</name>
+    <number>1</number>
+    <className>XWiki.ComponentMethodClass</className>
+    <guid>f7ccbbaa-2d6f-4a9d-96a0-113b483d3aed</guid>
+    <property>
+      <code>{{groovy}}
+xcontext.method.output.value = doc.documentReference.toString()
+{{/groovy}}</code>
+    </property>
+    <property>
+      <name>getName</name>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.ComponentMethodClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Method body code</prettyName>
+        <rows>20</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Method name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+    </class>
+    <name>InvoicesCode.ServiceInitializerListener</name>
+    <number>2</number>
+    <className>XWiki.ComponentMethodClass</className>
+    <guid>52b2087e-b26f-40cc-a01a-dc5d762c5949</guid>
+    <property>
+      <code>{{groovy}}
+xcontext.method.output.value = []
+{{/groovy}}</code>
+    </property>
+    <property>
+      <name>getEvents</name>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.ComponentMethodClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Method body code</prettyName>
+        <rows>20</rows>
+        <size>40</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Method name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+    </class>
+    <name>InvoicesCode.ServiceInitializerListener</name>
+    <number>3</number>
+    <className>XWiki.ComponentMethodClass</className>
+    <guid>bd8013d1-0858-412a-8ad6-883aad3d0998</guid>
+    <property>
+      <code/>
+    </property>
+    <property>
+      <name>onEvent</name>
+    </property>
+  </object>
+  <content>Script service with various invoices related methods.</content>
+</xwikidoc>
