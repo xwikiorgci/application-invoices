@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc>
+  <web>InvoicesCode</web>
+  <name>XWikiUserInvoicesSheet</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent/>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1438536271000</creationDate>
+  <date>1438539987000</date>
+  <contentUpdateDate>1438539987000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity}}
+#set($obj = $doc.getObject("XWiki.XWikiUsers"))
+#if(!$obj)
+= $services.localization.render('xe.admin.users.sheet') =
+
+{{info}}$services.localization.render('xe.admin.users.applyonusers'){{/info}}##
+#else
+#set($customerObject = $doc.getObject('InvoicesCode.InvoiceCustomerClass'))
+#if (!$customerObject)
+  #set($customerObject = $doc.newObject('InvoicesCode.InvoiceCustomerClass'))
+  $doc.save($services.localization.render('invoices.addcustomerobject'), true)
+#end
+{{html clean="false" wiki="true"}}
+$xwiki.ssx.use("XWiki.XWikiUserSheet")##
+  &lt;div class="#if($xcontext.action == 'view')half #{else}full #{end}column xform"&gt;
+    &lt;div class="userInfo"&gt;
+      #if($xcontext.action == 'view' &amp;&amp; $hasEdit)
+        &lt;div class="editProfileCategory"&gt;&lt;a href="$doc.getURL('edit', 'category=invoices')"&gt;&lt;span class="hidden"&gt;$services.localization.render('platform.core.profile.category.invoices.edit')&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      #end
+      &lt;h1&gt;$services.localization.render('platform.core.profile.section.invoicesManagement')&lt;/h1&gt;
+      &lt;dl&gt;
+        &lt;dt class="label"&gt;&lt;label#if($xcontext.action != 'view') for="InvoicesCode.InvoiceCustomerClass_0_customer_user"#end&gt;$services.localization.render('InvoicesCode.InvoiceCustomerClass_customer_user')&lt;/label&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+          $customerObject.customer_user
+        &lt;/dd&gt;
+        &lt;dt class="label"&gt;&lt;label#if($xcontext.action != 'view') for="InvoicesCode.InvoiceCustomerClass_0_customer_email"#end&gt;$services.localization.render('InvoicesCode.InvoiceCustomerClass_customer_email')&lt;/label&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+          $customerObject.customer_email
+        &lt;/dd&gt;
+        &lt;dt class="label"&gt;&lt;label#if($xcontext.action != 'view') for="InvoicesCode.InvoiceCustomerClass_0_customer_address"#end&gt;$services.localization.render('InvoicesCode.InvoiceCustomerClass_customer_address')&lt;/label&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+          $customerObject.customer_address
+        &lt;/dd&gt;
+        &lt;dt class="label"&gt;&lt;label#if($xcontext.action != 'view') for="InvoicesCode.InvoiceCustomerClass_0_customer_name"#end&gt;$services.localization.render('InvoicesCode.InvoiceCustomerClass_customer_name')&lt;/label&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+          $customerObject.customer_name
+        &lt;/dd&gt;
+        &lt;dt class="label"&gt;&lt;label#if($xcontext.action != 'view') for="InvoicesCode.InvoiceCustomerClass_0_customer_company"#end&gt;$services.localization.render('InvoicesCode.InvoiceCustomerClass_customer_company')&lt;/label&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+          $customerObject.customer_company
+        &lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  #if ($xcontext.action == 'view')
+    ## The live table display of the invoices entries doesn't adapt i.e. in case of long page names
+    ## when the available width is limited so we need to ensure this column takes at least half of the container width
+    ## (unlike the rest of the columns). The result is that this column will be displayed below the previous one when
+    ## the page width is reduced.
+    &lt;div class="min-half column"&gt;
+      &lt;div class="invoicesElements"&gt;
+        &lt;h1&gt;$services.localization.render('platform.core.profile.section.invoicesElements')&lt;/h1&gt;
+
+        #set ($columnsProperties = {
+          'number': {"type":"number","size":10,"link":"view"},
+          'customer_user': {"type":"text","size":10,"html":true},
+          'date': {"type":"text","size":10,"html":true},
+          'price': {"type":"number","size":10}
+        })
+        #set ($options = {
+          'className': 'InvoicesCode.InvoiceClass',
+          'resultPage': 'InvoicesCode.InvoicesLiveTableResults',
+          'translationPrefix': 'invoices.livetable.',
+          'tagCloud': true,
+          'rowCount': 15,
+          'maxPages': 10,
+          'selectedColumn': 'number',
+          'defaultOrder': 'asc',
+          'extraParams': "&amp;customer_user=$doc"
+        })
+        #set ($columns = ['number', 'customer_user', 'date', 'price'])
+        #livetable('invoices' $columns $columnsProperties $options)
+      &lt;/div&gt;
+    &lt;/div&gt;
+  #end
+  &lt;div class="clearfloats"&gt;&amp;nbsp;&lt;/div&gt;
+{{/html}}##
+#end
+{{/velocity}}</content>
+</xwikidoc>
