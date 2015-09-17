@@ -27,16 +27,54 @@
   <parent>
     <groupId>org.xwiki.platform</groupId>
     <artifactId>xwiki-platform-core</artifactId>
-    <version>7.0.1</version>
+    <version>7.0.0</version>
   </parent>
-  <groupId>org.atelierdesmedias.invoices</groupId>
+  <groupId>org.xwiki.contrib.invoices</groupId>
   <artifactId>invoices</artifactId>
   <name>Invoices</name>
-  <description>Application to manager invoices</description>
+  <description>Application to manage invoices</description>
   <packaging>xar</packaging>
   <version>1.0-SNAPSHOT</version>
   <properties>
     <!-- Don't run CLIRR here since there's no Java code. -->
     <xwiki.clirr.skip>true</xwiki.clirr.skip>
   </properties>
+  <developers>
+    <developer>
+      <id>tmortagne</id>
+      <name>Thomas Mortagne</name>
+      <organization>Atelier des médias</organization>
+    </developer>
+  </developers>
+  <build>
+    <!-- Needed to add support for the XAR packaging -->
+    <extensions>
+      <extension>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-tool-xar-handlers</artifactId>
+        <version>${commons.version}</version>
+      </extension>
+    </extensions>
+    <plugins>
+      <!-- The XAR packaging uses the XAR plugin and thus we need to define what version to use -->
+      <plugin>
+        <groupId>org.xwiki.commons</groupId>
+        <artifactId>xwiki-commons-tool-xar-plugin</artifactId>
+        <version>${commons.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+  <scm>
+    <connection>scm:git:git://github.com/atelierdesmedias/xwiki-invoices.git</connection>
+    <developerConnection>scm:git:git@github.com:atelierdesmedias/xwiki-invoices.git</developerConnection>
+    <url>https://github.com/atelierdesmedias/xwiki-invoices</url>
+    <tag>HEAD</tag>
+  </scm>
+  <distributionManagement>
+    <repository>
+      <id>xwiki-staging</id>
+      <name>XWiki Staging Repository</name>
+      <url>http://nexus.xwiki.org/nexus/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 </project>
