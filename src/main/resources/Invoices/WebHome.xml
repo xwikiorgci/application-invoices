@@ -71,7 +71,7 @@
     <className>InvoicesCode.InvoiceConfigurationClass</className>
     <guid>a542fa7d-97f5-4161-a6a7-846a9e4f3816</guid>
     <property>
-      <email>adm-tresorerie@googlegroups.com</email>
+      <email></email>
     </property>
   </object>
   <object>
@@ -190,23 +190,6 @@ icon=icon:money</parameters>
 &lt;form&gt;
   &lt;input type="hidden" name="iaction" value="create_reimboursement"/&gt;
   &lt;input type="submit" value="$escapetool.xml($services.localization.render('invoices.actions.reimboursement'))"/&gt;
-&lt;/form&gt;
-{{/html}}
-{{/velocity}}
-
-= {{translation key="invoices.advanced"/}}
-
-{{velocity}}
-#if ($request.iaction == 'start_all')
-  
-#end
-{{/velocity}}
-
-{{velocity}}
-{{html}}
-&lt;form&gt;
-  &lt;input type="hidden" name="iaction" value="start_all"/&gt;
-  &lt;input type="submit" value="$escapetool.xml($services.localization.render('invoices.advanced.start'))"/&gt;
 &lt;/form&gt;
 {{/html}}
 {{/velocity}}
