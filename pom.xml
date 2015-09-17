@@ -30,7 +30,7 @@
     <version>7.0.1</version>
   </parent>
   <groupId>org.xwiki.contrib.invoices</groupId>
-  <artifactId>invoices</artifactId>
+  <artifactId>application-invoices</artifactId>
   <name>Invoices</name>
   <description>Application to manage invoices</description>
   <packaging>xar</packaging>
