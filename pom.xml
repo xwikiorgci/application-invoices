@@ -43,7 +43,6 @@
     <developer>
       <id>tmortagne</id>
       <name>Thomas Mortagne</name>
-      <organization>Atelier des médias</organization>
     </developer>
   </developers>
   <build>
@@ -65,9 +64,9 @@
     </plugins>
   </build>
   <scm>
-    <connection>scm:git:git://github.com/atelierdesmedias/xwiki-invoices.git</connection>
-    <developerConnection>scm:git:git@github.com:atelierdesmedias/xwiki-invoices.git</developerConnection>
-    <url>https://github.com/atelierdesmedias/xwiki-invoices</url>
+    <connection>scm:git:git://github.com/xwiki-contrib/application-invoices.git</connection>
+    <developerConnection>scm:git:git@github.com:xwiki-contrib/application-invoices.git</developerConnection>
+    <url>https://github.com/xwiki-contrib/application-invoices</url>
     <tag>HEAD</tag>
   </scm>
   <distributionManagement>
