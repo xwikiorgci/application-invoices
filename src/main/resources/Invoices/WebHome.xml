@@ -71,7 +71,7 @@
     <className>InvoicesCode.InvoiceConfigurationClass</className>
     <guid>a542fa7d-97f5-4161-a6a7-846a9e4f3816</guid>
     <property>
-      <email></email>
+      <email/>
     </property>
   </object>
   <object>
