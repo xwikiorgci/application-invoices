@@ -23,9 +23,9 @@
 <xwikidoc>
   <web>InvoicesCode</web>
   <name>InvoicesTranslations</name>
-  <language/>
+  <language>fr</language>
   <defaultLanguage>en</defaultLanguage>
-  <translation>0</translation>
+  <translation>1</translation>
   <parent>InvoiceClass</parent>
   <creator>xwiki:XWiki.Admin</creator>
   <author>xwiki:XWiki.Admin</author>
@@ -78,63 +78,63 @@
     </property>
   </object>
   <content># Class fields
-InvoicesCode.InvoicesClass_number=Number
-InvoicesCode.InvoicesClass_customer_user=Customer
-InvoicesCode.InvoicesClass_customer_company=Customer company
-InvoicesCode.InvoicesClass_customer_name=Customer name
-InvoicesCode.InvoicesClass_customer_address=Customer address
+InvoicesCode.InvoicesClass_number=Nombre
+InvoicesCode.InvoicesClass_customer_user=Client
+InvoicesCode.InvoicesClass_customer_company=Société du client
+InvoicesCode.InvoicesClass_customer_name=Nom du client
+InvoicesCode.InvoicesClass_customer_address=Adresse du client
 InvoicesCode.InvoicesClass_date=Date
-InvoicesCode.InvoicesClass_product=Product/Service
-InvoicesCode.InvoicesClass_price=Price (excluding taxes)
-InvoicesCode.InvoicesClass_vat=VAT
-InvoicesCode.InvoicesClass_currency=Currency
-InvoicesCode.InvoiceCustomerClass_customer_user=Customer
-InvoicesCode.InvoiceCustomerClass_customer_email=Customer email
-InvoicesCode.InvoiceCustomerClass_customer_address=Customer address
-InvoicesCode.InvoiceCustomerClass_customer_name=Customer name
-InvoicesCode.InvoiceCustomerClass_customer_company=Customer company
+InvoicesCode.InvoicesClass_product=Produit/Service
+InvoicesCode.InvoicesClass_price=Prix (horst taxes)
+InvoicesCode.InvoicesClass_vat=TVA
+InvoicesCode.InvoicesClass_currency=Devise
+InvoicesCode.InvoiceCustomerClass_customer_user=Client
+InvoicesCode.InvoiceCustomerClass_customer_email=Email du client
+InvoicesCode.InvoiceCustomerClass_customer_address=Adresse du client
+InvoicesCode.InvoiceCustomerClass_customer_name=Nom du client
+InvoicesCode.InvoiceCustomerClass_customer_company=Société du client
 
 # Live table generic keys
-invoices.livetable.doc.title=Page title
-invoices.livetable.doc.name=Page name
-invoices.livetable.doc.space=Space
-invoices.livetable.doc.fullname=Page full name
-invoices.livetable.doc.author=Last Author
-invoices.livetable.doc.creator=Creator
-invoices.livetable.doc.date=Update date
-invoices.livetable.doc.creationDate=Creation date
+invoices.livetable.doc.title=Titre
+invoices.livetable.doc.name=Nom
+invoices.livetable.doc.space=Espace
+invoices.livetable.doc.fullname=Nom complet
+invoices.livetable.doc.author=Auteur
+invoices.livetable.doc.creator=Créateur
+invoices.livetable.doc.date=Date
+invoices.livetable.doc.creationDate=Date de création
 invoices.livetable._avatar=Avatar
 invoices.livetable._images=Images
-invoices.livetable._attachments=Attachments
+invoices.livetable._attachments=Attachements
 invoices.livetable._actions=Actions
-invoices.livetable._actions.edit=Edit
-invoices.livetable._actions.delete=Delete
+invoices.livetable._actions.edit=Editer
+invoices.livetable._actions.delete=Supprimer
 invoices.livetable.emptyvalue=-
 
 # Live table specific keys
-invoices.livetable.number=Number
-invoices.livetable.customer_user=Customer
-invoices.livetable.customer_company=Customer company
-invoices.livetable.customer_name=Customer name
-invoices.livetable.customer_address=Customer address
+invoices.livetable.number=Nombre
+invoices.livetable.customer_user=Client
+invoices.livetable.customer_company=Société du client
+invoices.livetable.customer_name=Nom du client
+invoices.livetable.customer_address=Adresse du client
 invoices.livetable.date=Date
-invoices.livetable.product=Product/Service
-invoices.livetable.price=Price (excluding taxes)
-invoices.livetable.vat=VAT
-invoices.livetable.currency=Currency
+invoices.livetable.product=Produit/Service
+invoices.livetable.price=Prix (hors taxes)
+invoices.livetable.vat=TVA
+invoices.livetable.currency=Devise
 
 # UI
-invoices.description=Application to manage and create new invoices (or reimbursements). It also notify related users about the invoice and generate PDFs.
+invoices.description=Application for gérer et créer des facture (ou des emboursements). Elle produit aussi des notification par mail lors de la création de nouvelles factures.
 invoices.actions=Actions
-invoices.actions.invoice=New invoice
-invoices.actions.reimboursement=New reimboursement
-invoices.invoices=Invoices
+invoices.actions.invoice=Nouvelle facture
+invoices.actions.reimboursement=Nouveau remboursement
+invoices.invoices=Factures
 
 # User profile
-platform.core.profile.category.invoices=Invoices
-platform.core.profile.section.invoicesManagement=Customer
-platform.core.profile.section.invoicesElements=Invoices
+platform.core.profile.category.invoices=Factures
+platform.core.profile.section.invoicesManagement=Client
+platform.core.profile.section.invoicesElements=Factures
 
 # Misc
-invoices.addcustomerobject=Add new customer object</content>
+invoices.addcustomerobject=Ajouté un objet client</content>
 </xwikidoc>
