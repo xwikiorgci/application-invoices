@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc>
+<xwikidoc reference="InvoicesCode.InvoicesTranslations" locale="fr">
   <web>InvoicesCode</web>
   <name>InvoicesTranslations</name>
   <language>fr</language>
@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1433064505000</creationDate>
-  <date>1438539962000</date>
-  <contentUpdateDate>1438539962000</contentUpdateDate>
+  <date>1453477261000</date>
+  <contentUpdateDate>1453477261000</contentUpdateDate>
   <version>1.1</version>
   <title/>
   <defaultTemplate/>
@@ -78,21 +78,25 @@
     </property>
   </object>
   <content># Class fields
-InvoicesCode.InvoicesClass_number=Nombre
-InvoicesCode.InvoicesClass_customer_user=Client
-InvoicesCode.InvoicesClass_customer_company=Société du client
-InvoicesCode.InvoicesClass_customer_name=Nom du client
-InvoicesCode.InvoicesClass_customer_address=Adresse du client
-InvoicesCode.InvoicesClass_date=Date
-InvoicesCode.InvoicesClass_product=Produit/Service
-InvoicesCode.InvoicesClass_price=Prix (horst taxes)
-InvoicesCode.InvoicesClass_vat=TVA
-InvoicesCode.InvoicesClass_currency=Devise
-InvoicesCode.InvoiceCustomerClass_customer_user=Client
+InvoicesCode.InvoiceClass_number=Numéro de facture
+InvoicesCode.InvoiceClass_customer_user=Client
+InvoicesCode.InvoiceClass_customer_company=Nom de la société du client
+InvoicesCode.InvoiceClass_customer_name=Nom du client
+InvoicesCode.InvoiceClass_customer_address=Adresse du client
+InvoicesCode.InvoiceClass_date=Date
+InvoicesCode.InvoiceClass_product=Produit/Service
+InvoicesCode.InvoiceClass_price=Prix (horst taxes)
+InvoicesCode.InvoiceClass_vat=TVA
+InvoicesCode.InvoiceClass_currency=Devise
+InvoicesCode.InvoiceClass_extra=Extra
+InvoicesCode.InvoiceCustomerClass_customer_user=Client (autre utilisateur)
 InvoicesCode.InvoiceCustomerClass_customer_email=Email du client
 InvoicesCode.InvoiceCustomerClass_customer_address=Adresse du client
 InvoicesCode.InvoiceCustomerClass_customer_name=Nom du client
-InvoicesCode.InvoiceCustomerClass_customer_company=Société du client
+InvoicesCode.InvoiceCustomerClass_customer_company=Nom de la société du client
+InvoicesCode.InvoiceProductClass_product=Produit/Service
+InvoicesCode.InvoiceProductClass_price=Prix
+InvoicesCode.InvoiceProductClass_vat=TVA
 
 # Live table generic keys
 invoices.livetable.doc.title=Titre
@@ -114,17 +118,17 @@ invoices.livetable.emptyvalue=-
 # Live table specific keys
 invoices.livetable.number=Nombre
 invoices.livetable.customer_user=Client
-invoices.livetable.customer_company=Société du client
+invoices.livetable.customer_company=Nom de la société
 invoices.livetable.customer_name=Nom du client
 invoices.livetable.customer_address=Adresse du client
 invoices.livetable.date=Date
-invoices.livetable.product=Produit/Service
-invoices.livetable.price=Prix (hors taxes)
 invoices.livetable.vat=TVA
 invoices.livetable.currency=Devise
+invoices.livetable.totalPrice=Total (hors taxes)
+invoices.livetable.firstProduct=Produit/Service
 
 # UI
-invoices.description=Application for gérer et créer des facture (ou des emboursements). Elle produit aussi des notification par mail lors de la création de nouvelles factures.
+invoices.description=Application pour gérer et créer des factures (ou des remboursements). Elle produit aussi des notifications par mail lors de la création de nouvelles factures.
 invoices.actions=Actions
 invoices.actions.invoice=Nouvelle facture
 invoices.actions.reimboursement=Nouveau remboursement
@@ -135,6 +139,16 @@ platform.core.profile.category.invoices=Factures
 platform.core.profile.section.invoicesManagement=Client
 platform.core.profile.section.invoicesElements=Factures
 
+# Sheet
+invoices.invoice.name=Facture {0}
+invoices.reimbursement.name=Remboursement {0}
+invoices.export.pdf=Eporter en PDF
+invoices.edit.totalAuto=TOTAL calculé automatiquement
+invoices.edit.vatValue=TVA - Montant calculé automatiquement
+invoices.vatPercent=TVA à {0}%
+invoices.totalWithTaxes=Total (TTC)
+invoices.totalWithoutTaxes=Total (HT)
+
 # Misc
-invoices.addcustomerobject=Ajouté un objet client</content>
+invoices.addcustomerobject=Ajouter un objet client</content>
 </xwikidoc>

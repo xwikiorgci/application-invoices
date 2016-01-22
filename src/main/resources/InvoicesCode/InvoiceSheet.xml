@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc>
+<xwikidoc reference="InvoicesCode.InvoiceSheet" locale="">
   <web>InvoicesCode</web>
   <name>InvoiceSheet</name>
   <language/>
@@ -32,10 +32,10 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1433064505000</creationDate>
-  <date>1434198502000</date>
-  <contentUpdateDate>1434198502000</contentUpdateDate>
+  <date>1453486208000</date>
+  <contentUpdateDate>1453486208000</contentUpdateDate>
   <version>1.1</version>
-  <title/>
+  <title>$services.localization.render("invoices.${doc.getValue('type')}.name", [${doc.getValue('number')}])#if ($doc.getValue('firstProduct')) - $doc.getValue('firstProduct')#end</title>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
@@ -43,52 +43,206 @@
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
   <content>{{velocity}}
+## wiki=true is mostly here because of display() calls which often generate inner {{html}} macros
 {{html wiki="true"}}
 #set ($discard = $doc.use('InvoicesCode.InvoiceClass'))
 #set ($discard = $services.localization.use('document', 'InvoicesCode.InvoicesTranslations'))
-(% class="xform" %)
-(((
+
+&lt;div class="xform" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:10pt;"&gt;
   &lt;input type="hidden" name="InvoicesCode.InvoiceClass_0_number" value="$request.number"/&gt;
 
-  #if ($request.number)
-    ; $escapetool.xml($doc.displayPrettyName('number', false, false))
-    : $request.number
-  #else
-    ; &lt;label for="InvoicesCode.InvoiceClass_0_number"&gt;$escapetool.xml($doc.displayPrettyName('number', false, false))&lt;/label&gt;
-    : $doc.display('number')
+  ## Customer user id
+  #if ($xcontext.action == 'edit')
+    &lt;label for="InvoicesCode.InvoiceClass_0_customer_user"&gt;$escapetool.xml($doc.displayPrettyName('customer_user', false, false))&lt;/label&gt;
+    $doc.display('customer_user')
   #end
 
+  ## Type
   #if ($request.type)
-    &lt;input type="hidden" name="InvoicesCode.InvoiceClass_0_type" value="$request.type"/&gt;
-  #else
-    ; &lt;label for="InvoicesCode.InvoiceClass_0_type"&gt;$escapetool.xml($doc.displayPrettyName('type', false, false))&lt;/label&gt;
-    : $doc.display('type')
+    #set($void = $doc.set('type', $request.type))
+  #elseif (!$doc.getValue('type'))
+    #set($void = $doc.set('type', 'invoice'))
+  #end
+  #set($invoiceType = $doc.getValue('type'))
+  #if ($xcontext.action == 'edit')
+    &lt;input type="hidden" name="InvoicesCode.InvoiceClass_0_type" value="$type"/&gt;
   #end
 
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_customer_user"&gt;$escapetool.xml($doc.displayPrettyName('customer_user', false, false))&lt;/label&gt;
-  : $doc.display('customer_user')
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_customer_company"&gt;$escapetool.xml($doc.displayPrettyName('customer_company', false, false))&lt;/label&gt;
-  : $doc.display('customer_company')
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_customer_name"&gt;$escapetool.xml($doc.displayPrettyName('customer_name', false, false))&lt;/label&gt;
-  : $doc.display('customer_name')
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_customer_address"&gt;$escapetool.xml($doc.displayPrettyName('customer_address', false, false))&lt;/label&gt;
-  : $doc.display('customer_address')
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_customer_address"&gt;$escapetool.xml($doc.displayPrettyName('customer_email', false, false))&lt;/label&gt;
-  : $doc.display('customer_email')
+  ## Logo
+  &lt;div align="center" width="100%"&gt;
+    #set($sheetDocument = $xwiki.getDocument('InvoicesCode.InvoiceSheet'))
+    #if ($sheetDocument.getAttachment('logo.png'))
+      &lt;img src="$sheetDocument.getAttachmentURL('logo.png')" width="200"/&gt;
+    #end
+  &lt;/div&gt;
 
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_date"&gt;$escapetool.xml($doc.displayPrettyName('date', false, false))&lt;/label&gt;
-  : $doc.display('date')
+  ## Adress
+  #if ($xcontext.action != 'edit') 
+    &lt;div align="left" width="100%" style="padding-bottom:2em"&gt;
+      $services.invoice.configurationDocument.display('adress', 'view')
+    &lt;/div&gt;
+  #end
 
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_product"&gt;$escapetool.xml($doc.displayPrettyName('product', false, false))&lt;/label&gt;
-  : $doc.display('product')
+  ## Customer
+  #if ($xcontext.action == 'edit')
+    &lt;div width="100%" style="padding-bottom:2em"&gt;
+  #else
+    &lt;div align="right" width="100%" style="padding-bottom:2em"&gt;
+  #end
+    #if ($xcontext.action == 'edit')
+       &lt;label for="InvoicesCode.InvoiceClass_0_customer_company"&gt;$escapetool.xml($doc.displayPrettyName('customer_company', false, false))&lt;/label&gt;
+    #end
+    $doc.display('customer_company')
 
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_price"&gt;$escapetool.xml($doc.displayPrettyName('price', false, false))&lt;/label&gt;
-  : $doc.display('price')
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_vat"&gt;$escapetool.xml($doc.displayPrettyName('vat', false, false))&lt;/label&gt;
-  : $doc.display('vat')
-  ; &lt;label for="InvoicesCode.InvoiceClass_0_currency"&gt;$escapetool.xml($doc.displayPrettyName('currency', false, false))&lt;/label&gt;
-  : $doc.display('currency')
-)))
+    &lt;br /&gt;
+
+    #if ($xcontext.action == 'edit')    
+       &lt;label for="InvoicesCode.InvoiceClass_0_customer_name"&gt;$escapetool.xml($doc.displayPrettyName('customer_name', false, false))&lt;/label&gt; 
+    #end
+    $doc.display('customer_name')
+
+    &lt;br /&gt;
+    
+    #if ($xcontext.action == 'edit')
+       &lt;label for="InvoicesCode.InvoiceClass_0_customer_address"&gt;$escapetool.xml($doc.displayPrettyName('customer_address', false, false))
+    &lt;/label&gt; 
+    #end
+    $doc.display('customer_address')
+
+    &lt;br /&gt;
+
+    #if ($xcontext.action == 'edit')    
+      &lt;label for="InvoicesCode.InvoiceClass_0_customer_address"&gt;$escapetool.xml($doc.displayPrettyName('customer_email', false, false))&lt;/label&gt;
+      $doc.display('customer_email')
+      &lt;br /&gt;
+    #end
+
+    #if ($xcontext.action == 'edit')
+        &lt;label for="InvoicesCode.InvoiceClass_0_date"&gt;$escapetool.xml($doc.displayPrettyName('date', false, false))&lt;/label&gt;
+        $doc.display('date')
+    #end
+
+    #set($myDate = $doc.getContentUpdateDate()) 
+    &lt;p&gt;$datetool.format('d/M/yyyy', $myDate)&lt;/p&gt;
+
+  &lt;/div&gt;
+
+  ## Invoice number
+  #if ($request.number)
+    #set($void = $doc.set('number', $request.number))
+  #end
+  #set($invoiceNumber = $doc.get('number'))
+  #if ($xcontext.action == 'edit')
+    &lt;label for="InvoicesCode.InvoiceClass_0_number"&gt;$escapetool.xml($doc.displayPrettyName('number', false, false))&lt;/label&gt;
+    $doc.display('number')
+  #else
+    &lt;p&gt;&lt;u&gt;$services.localization.render("invoices.${invoiceType}.name", 'html/5.0', [$invoiceNumber])&lt;/u&gt;&lt;/p&gt;
+  #end
+
+  &lt;table width="100%" style="padding-bottom:3em"&gt;
+    #set($vatTotals = {})
+    #set($total = 0)
+    #set($totalVATIncluded = 0)
+    #foreach($productObject in $doc.getObjects('InvoicesCode.InvoiceProductClass'))
+      #if ($xcontext.action != 'edit')
+        #set($price = $productObject.getValue('price'))
+
+        ## VAT
+        #set($vat = $productObject.getValue('vat'))
+        #if (!$vat)
+          #set($vat = 20)
+        #end
+
+        ## VAT value
+        #set($vatValue = ($price * $vat) / 100)
+
+        ## VAT total
+        #set($vatTotal = $vatTotals.get($vat))
+        #if ($vatTotal)
+          #set($vatTotal = $vatTotal + $vatValue)
+        #else
+          #set($vatTotal = $vatValue)
+        #end
+        #set($void = $vatTotals.put($vat, $vatValue))
+
+        ## Price total
+        #set($total = $total + $price)
+
+        ## Price total TVA included
+        #set($totalVATIncluded = $totalVATIncluded + $price + $vatValue)
+      #end
+
+      ## Products
+      &lt;tr style="height:2em; display: table-row; vertical-align:middle;"&gt;
+        &lt;td align="left" bgcolor="#CCCCCC" style="padding-left:10px"&gt;
+          #if ($xcontext.action == 'edit')
+            &lt;label for="InvoicesCode.InvoiceClass_0_product"&gt;$escapetool.xml($doc.displayPrettyName('product', $productObject))&lt;/label&gt;
+          #end
+          $productObject.product
+        &lt;/td&gt;
+        &lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;
+          #if ($xcontext.action == 'edit')      
+            &lt;label for="InvoicesCode.InvoiceClass_${productObject.number}_vat"&gt;$doc.displayPrettyName('vat', $productObject)&lt;/label&gt;
+            $productObject.vat
+          #else
+            $vat%
+          #end
+        &lt;/td&gt;
+        &lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;
+          #if ($xcontext.action == 'edit')      
+            &lt;label for="InvoicesCode.InvoiceClass_${productObject.number}_price"&gt;$escapetool.xml($doc.displayPrettyName('price', $productObject))&lt;/label&gt;
+          #end
+          $productObject.price $productObject.currency
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    #end
+
+    ## Total before VAT
+    &lt;tr style="height:2em; display: table-row;vertical-align:middle;"&gt;
+      &lt;td colspan="2" align="right"&gt;$services.localization.render('invoices.totalWithoutTaxes')&lt;/td&gt;
+
+      &lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;
+        #if ($xcontext.action == 'edit')
+          ($services.localization.render('invoices.edit.vatValue', 'html/5.0', []))
+        #else
+          $mathtool.roundTo(2,$total)$doc.display('currency')
+        #end
+      &lt;/td&gt;
+    &lt;/tr&gt;
+
+    ## Totals by TVA
+    #foreach($vatTotalEntry in $vatTotals.entrySet())
+      &lt;tr style="height:2em; display: table-row;vertical-align:middle;"&gt;
+        &lt;td colspan="2" align="right"&gt;$services.localization.render('invoices.vatPercent', 'html/5.0', [$vatTotalEntry.key])&lt;/td&gt;
+     
+        &lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;
+          #if ($xcontext.action == 'edit')
+            ($services.localization.render('invoices.edit.vatValue', 'html/5.0', []))
+          #else
+            $mathtool.roundTo(2, $vatTotalEntry.value)$doc.display('currency')
+          #end
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    #end
+
+    ## Total VAT included
+    &lt;tr style="height:2em; display: table-row;vertical-align:middle;"&gt;
+      &lt;td colspan="2" align="right"&gt;$services.localization.render('invoices.totalWithTaxes')&lt;/td&gt;&lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;  
+          #if ($xcontext.action != 'edit')
+            $mathtool.roundTo(2, $totalVATIncluded)$doc.display('currency')
+          #else
+            ($services.localization.render('invoices.edit.totalAuto', 'html/5.0', []))
+          #end
+     &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+
+  $doc.display('extra')
+
+  #if ($xcontext.action == 'view')
+    &lt;a href="$doc.getURL('export', 'format=pdf&amp;pdfcover=0&amp;pdftoc=0&amp;comments=0&amp;attachments=0')"&gt;$services.localization.render('invoices.export.pdf', 'html/5.0', [])&lt;/a&gt;
+  #end
+&lt;/div&gt;
 {{/html}}
 {{/velocity}}</content>
 </xwikidoc>

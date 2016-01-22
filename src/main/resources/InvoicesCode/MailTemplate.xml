@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc>
+<xwikidoc reference="InvoicesCode.MailTemplate" locale="">
   <web>InvoicesCode</web>
   <name>MailTemplate</name>
   <language/>
@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1434200780000</creationDate>
-  <date>1434200841000</date>
-  <contentUpdateDate>1434200835000</contentUpdateDate>
+  <date>1453374112000</date>
+  <contentUpdateDate>1453374112000</contentUpdateDate>
   <version>1.1</version>
   <title/>
   <defaultTemplate/>
@@ -96,7 +96,15 @@
     <className>XWiki.Mail</className>
     <guid>f53f2591-0d66-4da6-8a97-db5be0b744f5</guid>
     <property>
-      <html>html en</html>
+      <html>Bonjour,
+&lt;br/&gt;&lt;br/&gt;
+Voici la facture $invoice.number - $invoice.product. Vous la trouverez aussi dans votre profil utilisateur sur l'intranet.
+&lt;br/&gt;&lt;br/&gt;
+N'hésitez pas à nous contacter (et même à nous relancer...) si question.
+&lt;br/&gt;&lt;br/&gt;
+L'équipe Tréso.
+&lt;br/&gt;&lt;br/&gt;
+Pour tout contact avec nous, écrivez à : adm-tresorerie@googlegroups.com</html>
     </property>
     <property>
       <language/>
@@ -105,7 +113,15 @@
       <subject>Subject</subject>
     </property>
     <property>
-      <text>text</text>
+      <text>Bonjour,
+
+Voici la facture $invoice.number intitulée $invoice.product. Vous la trouverez aussi dans votre profil utilisateur sur l'intranet.
+
+N'hésitez pas à nous contacter (et même à nous relancer...) si question.
+
+L'équipe Tréso.
+
+Pour tout contact avec nous, écrivez à : adm-tresorerie@googlegroups.com</text>
     </property>
   </object>
   <content/>

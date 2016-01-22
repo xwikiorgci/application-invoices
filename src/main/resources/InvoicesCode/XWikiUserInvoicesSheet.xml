@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc>
+<xwikidoc reference="InvoicesCode.XWikiUserInvoicesSheet" locale="">
   <web>InvoicesCode</web>
   <name>XWikiUserInvoicesSheet</name>
   <language/>
@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1438536271000</creationDate>
-  <date>1438539987000</date>
-  <contentUpdateDate>1438539987000</contentUpdateDate>
+  <date>1453374110000</date>
+  <contentUpdateDate>1453374110000</contentUpdateDate>
   <version>1.1</version>
   <title/>
   <defaultTemplate/>
@@ -112,7 +112,7 @@ $xwiki.ssx.use("XWiki.XWikiUserSheet")##
           'defaultOrder': 'asc',
           'extraParams': "&amp;customer_user=$doc"
         })
-        #set ($columns = ['number', 'customer_user', 'date', 'price'])
+        #set ($columns = ['number', 'customer_user', 'date', 'totalPrice'])
         #livetable('invoices' $columns $columnsProperties $options)
       &lt;/div&gt;
     &lt;/div&gt;

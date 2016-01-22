@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc>
+<xwikidoc reference="InvoicesCode.InvoicesTranslations" locale="">
   <web>InvoicesCode</web>
   <name>InvoicesTranslations</name>
   <language/>
@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1433064505000</creationDate>
-  <date>1438539962000</date>
-  <contentUpdateDate>1438539962000</contentUpdateDate>
+  <date>1453374112000</date>
+  <contentUpdateDate>1453374112000</contentUpdateDate>
   <version>1.1</version>
   <title/>
   <defaultTemplate/>
@@ -78,28 +78,32 @@
     </property>
   </object>
   <content># Class fields
-InvoicesCode.InvoicesClass_number=Number
-InvoicesCode.InvoicesClass_customer_user=Customer
-InvoicesCode.InvoicesClass_customer_company=Customer company
-InvoicesCode.InvoicesClass_customer_name=Customer name
-InvoicesCode.InvoicesClass_customer_address=Customer address
-InvoicesCode.InvoicesClass_date=Date
-InvoicesCode.InvoicesClass_product=Product/Service
-InvoicesCode.InvoicesClass_price=Price (excluding taxes)
-InvoicesCode.InvoicesClass_vat=VAT
-InvoicesCode.InvoicesClass_currency=Currency
-InvoicesCode.InvoiceCustomerClass_customer_user=Customer
+InvoicesCode.InvoiceClass_number=Invoice Number
+InvoicesCode.InvoiceClass_customer_user=Customer
+InvoicesCode.InvoiceClass_customer_company=Customer company name
+InvoicesCode.InvoiceClass_customer_name=Customer name
+InvoicesCode.InvoiceClass_customer_address=Customer address
+InvoicesCode.InvoiceClass_date=Date
+InvoicesCode.InvoiceClass_product=Product/Service
+InvoicesCode.InvoiceClass_price=Price (excluding taxes)
+InvoicesCode.InvoiceClass_vat=VAT
+InvoicesCode.InvoiceClass_currency=Currency
+InvoicesCode.InvoiceClass_extra=Extra
+InvoicesCode.InvoiceCustomerClass_customer_user=Customer (other user)
 InvoicesCode.InvoiceCustomerClass_customer_email=Customer email
 InvoicesCode.InvoiceCustomerClass_customer_address=Customer address
 InvoicesCode.InvoiceCustomerClass_customer_name=Customer name
-InvoicesCode.InvoiceCustomerClass_customer_company=Customer company
+InvoicesCode.InvoiceCustomerClass_customer_company=Customer company name
+InvoicesCode.InvoiceProductClass_product=Product/Service
+InvoicesCode.InvoiceProductClass_price=Price
+InvoicesCode.InvoiceProductClass_vat=VAT
 
 # Live table generic keys
-invoices.livetable.doc.title=Page title
-invoices.livetable.doc.name=Page name
+invoices.livetable.doc.title=Title
+invoices.livetable.doc.name=Name
 invoices.livetable.doc.space=Space
-invoices.livetable.doc.fullname=Page full name
-invoices.livetable.doc.author=Last Author
+invoices.livetable.doc.fullname=Full name
+invoices.livetable.doc.author=Author
 invoices.livetable.doc.creator=Creator
 invoices.livetable.doc.date=Update date
 invoices.livetable.doc.creationDate=Creation date
@@ -114,17 +118,17 @@ invoices.livetable.emptyvalue=-
 # Live table specific keys
 invoices.livetable.number=Number
 invoices.livetable.customer_user=Customer
-invoices.livetable.customer_company=Customer company
+invoices.livetable.customer_company=Company name
 invoices.livetable.customer_name=Customer name
 invoices.livetable.customer_address=Customer address
 invoices.livetable.date=Date
-invoices.livetable.product=Product/Service
-invoices.livetable.price=Price (excluding taxes)
 invoices.livetable.vat=VAT
 invoices.livetable.currency=Currency
+invoices.livetable.totalPrice=Total (excluding taxes)
+invoices.livetable.firstProduct=Product/Service
 
 # UI
-invoices.description=Application to manage and create new invoices (or reimbursements). It also notify related users about the invoice and generate PDFs.
+invoices.description=Application to manage and create new invoices (or reimbursements). It also produce mail notifications about new invoices.
 invoices.actions=Actions
 invoices.actions.invoice=New invoice
 invoices.actions.reimboursement=New reimboursement
@@ -134,6 +138,16 @@ invoices.invoices=Invoices
 platform.core.profile.category.invoices=Invoices
 platform.core.profile.section.invoicesManagement=Customer
 platform.core.profile.section.invoicesElements=Invoices
+
+# Sheet
+invoices.invoice.name=Invoice {0}
+invoices.reimbursement.name=Reimboursement {0}
+invoices.export.pdf=Export as PDF
+invoices.edit.totalAuto=automatically calculated TOTAL
+invoices.edit.vatValue=VAT - Automatically calculated
+invoices.vatPercent=VAT {0}%
+invoices.totalWithTaxes=Total (Including taxes)
+invoices.totalWithoutTaxes=Total (Excluding taxes)
 
 # Misc
 invoices.addcustomerobject=Add new customer object</content>

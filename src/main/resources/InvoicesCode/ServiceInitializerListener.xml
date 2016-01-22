@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc version="1.1">
+<xwikidoc version="1.2" reference="InvoicesCode.ServiceInitializerListener" locale="">
   <web>InvoicesCode</web>
   <name>ServiceInitializerListener</name>
   <language/>
@@ -31,8 +31,8 @@
   <parent>Invoices.WebHome</parent>
   <author>xwiki:XWiki.Admin</author>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <date>1442676128000</date>
-  <contentUpdateDate>1442493198000</contentUpdateDate>
+  <date>1453487500000</date>
+  <contentUpdateDate>1453374110000</contentUpdateDate>
   <version>1.1</version>
   <title/>
   <comment/>
@@ -82,7 +82,7 @@
         <prettyName>Component Scope</prettyName>
         <relationalStorage>0</relationalStorage>
         <separator> </separator>
-        <separators> ,|</separators>
+        <separators>|, </separators>
         <size>1</size>
         <unmodifiable>0</unmodifiable>
         <values>wiki=Current Wiki|user=Current User|global=Global</values>
@@ -267,9 +267,14 @@ public class Invoice
     public static final LocalDocumentReference INVOICECLASS_REFERENCE = new LocalDocumentReference("InvoicesCode",
         "InvoiceClass");
 
+    public static final LocalDocumentReference INVOICEPRODUCTCLASS_REFERENCE = new LocalDocumentReference("InvoicesCode",
+        "InvoiceProductClass");
+
     protected XWikiDocument document;
 
     private BaseObject xobject;
+
+    private InvoiceProduct firstProduct;
 
     public static boolean isInvoice(XWikiDocument document)
     {
@@ -290,6 +295,11 @@ public class Invoice
         this.document = document;
     }
 
+    public String getNumber()
+    {
+        return getXObject().getIntValue("number");
+    }
+
     public String getCustomerUser()
     {
         return getXObject().getStringValue("customer_user");
@@ -307,7 +317,7 @@ public class Invoice
 
     public String getCustomerAddress()
     {
-        return getXObject().getStringValue("customer_address");
+        return getXObject().getLargeStringValue("customer_address");
     }
 
     public String getCustomerCompany()
@@ -320,6 +330,11 @@ public class Invoice
         return getXObject().getDateValue("date");
     }
 
+    public double getTotalPrice()
+    {
+        return getXObject().getDoubleValue("totalPrice");
+    }
+
     public Date getInvoiceDate()
     {
         return this.document.getCreationDate();
@@ -327,12 +342,12 @@ public class Invoice
 
     public double getVAT()
     {
-        return getXObject().getDoubleValue("vat");
+        return getFirstProduct().getVAT();
     }
 
     public double getPrice()
     {
-        return getXObject().getDoubleValue("price");
+        return getFirstProduct().getPrice();
     }
 
     public double getPriceATI()
@@ -354,7 +369,7 @@ public class Invoice
 
     public String getProduct()
     {
-        return getXObject().getStringValue("product");
+        return getFirstProduct().getProduct();
     }
 
     // Write
@@ -366,6 +381,15 @@ public class Invoice
         }
 
         return this.xobject;
+    }
+
+    public InvoiceProduct getFirstProduct()
+    {
+        if (this.firstProduct == null) {
+            this.firstProduct = new InvoiceProduct(this.document, this.document.getXObject(INVOICEPRODUCTCLASS_REFERENCE));
+        }
+
+        return this.firstProduct;
     }
 
     protected XWikiDocument getDocument()
@@ -390,7 +414,7 @@ public class Invoice
 
     protected void setCustomerAddress(String customerAddress)
     {
-        getXObject().setStringValue("customer_address", customerAddress);
+        getXObject().setLargeStringValue("customer_address", customerAddress);
     }
 
     protected void setCustomerCompany(String customerCompany)
@@ -403,16 +427,6 @@ public class Invoice
         getXObject().setDateValue("date", date);
     }
 
-    protected void setVAT(double vat)
-    {
-        getXObject().setDoubleValue("vat", vat);
-    }
-
-    protected void setPrice(double price)
-    {
-        getXObject().setDoubleValue("price", price);
-    }
-
     protected void setCurrency(String currency)
     {
         getXObject().setStringValue("currency", currency);
@@ -423,11 +437,130 @@ public class Invoice
         getXObject().setStringValue("type", type);
     }
 
+    protected void setVAT(double vat)
+    {
+        getFirstProduct().setVAT(vat);
+    }
+
+    protected void setPrice(double price)
+    {
+        getFirstProduct().setPrice(price);
+    }
+
+    protected void setProduct(String product)
+    {
+        getFirstProduct().setProduct(product);
+        setFirstProductName(product);
+    }
+
+    protected void setTotalPrice(double total)
+    {
+        getXObject().setDoubleValue("totalPrice", total);
+    }
+
+    protected boolean updateTotalPrice()
+    {
+        double total = 0.0;
+
+        for (BaseObject productObject : getDocument().getXObjects(INVOICEPRODUCTCLASS_REFERENCE)) {
+            Double productPrice = productObject.getDoubleValue("price");
+            if (productPrice != null) {
+                total += productPrice;
+            }
+        }
+
+        setTotalPrice(total);
+    }
+
+    protected void setFirstProductName(String product)
+    {
+        getXObject().setStringValue("firstProduct", product);
+    }
+
+    protected boolean updateFirstProductName()
+    {
+        setFirstProductName(getProduct());
+    }
+}
+
+public class InvoiceProduct
+{
+    public static final LocalDocumentReference INVOICEPRODUCTCLASS_REFERENCE = new LocalDocumentReference("InvoicesCode",
+        "InvoiceProductClass");
+
+    protected XWikiDocument document;
+
+    private BaseObject xobject;
+
+    public static Invoice toInvoiceProduct(XWikiDocument document, BaseObject xobject)
+    {
+        if (isInvoice(document)) {
+            return new InvoiceProduct(document, xobject);
+        }
+
+        return null;
+    }
+
+    public InvoiceProduct(XWikiDocument document, BaseObject xobject)
+    {
+        this.document = document;
+        this.xobject = xobject;
+    }
+
+    public double getVAT()
+    {
+        return this.xobject.getDoubleValue("vat");
+    }
+
+    public double getPrice()
+    {
+        return this.xobject.getDoubleValue("price");
+    }
+
+    public double getPriceATI()
+    {
+        double price = getPrice();
+
+        return (price * (100 - getPriceATI())) / 100;
+    }
+
+    public String getProduct()
+    {
+        return this.xobject.getStringValue("product");
+    }
+
+    // Write
+
+    protected BaseObject getXObject()
+    {
+        if (this.xobject == null) {
+            this.xobject = this.document.getXObject(INVOICECLASS_REFERENCE);
+        }
+
+        return this.xobject;
+    }
+
+    protected XWikiDocument getDocument()
+    {
+        return this.document;
+    }
+
+    protected void setVAT(double vat)
+    {
+        getXObject().setDoubleValue("vat", vat);
+    }
+
+    protected void setPrice(double price)
+    {
+        getXObject().setDoubleValue("price", price);
+    }
+
     protected void setProduct(String product)
     {
         getXObject().setStringValue("product", product);
     }
 }
+
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -444,6 +577,7 @@ import javax.mail.internet.*;
 import javax.mail.util.*;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.velocity.VelocityContext;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.mail.*;
 import org.xwiki.model.reference.DocumentReference;
@@ -455,6 +589,7 @@ import org.xwiki.query.QueryException;
 import org.xwiki.query.QueryManager;
 import org.xwiki.rendering.syntax.Syntax;
 import org.xwiki.script.service.ScriptServiceManager;
+import org.xwiki.velocity.VelocityManager;
 
 import com.xpn.xwiki.XWikiContext;
 import com.xpn.xwiki.XWikiException;
@@ -464,6 +599,8 @@ import com.xpn.xwiki.pdf.api.PdfExport;
 import com.xpn.xwiki.pdf.impl.PdfExportImpl;
 import com.xpn.xwiki.pdf.impl.PdfURLFactory;
 import com.xpn.xwiki.user.api.XWikiRightService;
+import com.xpn.xwiki.web.XWikiRequest;
+import com.xpn.xwiki.web.XWikiServletRequest;
 import com.xpn.xwiki.web.XWikiURLFactory;
 
 @Component(roles = InvoiceManager.class)
@@ -498,6 +635,9 @@ public class InvoiceManager
     @Inject
     @Named("xwiki/template")
     private MimeBodyPartFactory&lt;DocumentReference&gt; templateBodyPartFactory;
+
+    @Inject
+    private VelocityManager velocityManager;
 
     public InvoiceCustomer getInvoiceCustomer(String userReference) throws XWikiException
     {
@@ -653,35 +793,94 @@ public class InvoiceManager
     public byte[] generatePDF(XWikiDocument invoiceDocument) throws XWikiException
     {
         XWikiContext xcontext = this.xcontextProvider.get();
+        VelocityContext velocityContext = this.velocityManager.getVelocityContext();
 
-        XWikiURLFactory urlFactory = new PdfURLFactory();
-        PdfExport exporter = new PdfExportImpl();
+        XWikiURLFactory currentURLFactory = xcontext.getURLFactory();
+        XWikiRequest currentRequest = velocityContext.get('request');
+        XWikiDocument currentXWikiDocument = xcontext.getDoc();
 
-        urlFactory.init(xcontext);
-        xcontext.setURLFactory(urlFactory);
+        try {
+          XWikiURLFactory urlFactory = new PdfURLFactory();
 
-        ByteArrayOutputStream pdfStream = new ByteArrayOutputStream(4096);
+          final Map pdfParameters = new HashMap();
+          pdfParameters.put('pdfcover', '0')
+          pdfParameters.put('pdftoc', '0')
+          XWikiServletRequest request = new XWikiServletRequest(currentRequest) {
+            @Override
+            public String getParameter(String prop)
+            {
+              return pdfParameters.get(prop);
+            }
 
-        exporter.exportToPDF(invoiceDocument, pdfStream, xcontext);
+            @Override
+            public String get(String prop)
+            {
+              return pdfParameters.get(prop);
+            }
 
-        return pdfStream.toByteArray();
+            // Support Servlet 3.1
+
+            public long getContentLengthLong()
+            {
+              return (long) getContentLength();
+            }
+
+            public String changeSessionId()
+            {
+              return "";
+            }
+
+            def upgrade(Class clazz)
+            {
+              return null;
+            }
+          };
+          velocityContext.put('request', request);
+          velocityContext.put('doc', invoiceDocument.newDocument(xcontext));
+          velocityContext.put('tdoc', velocityContext.get('doc'));
+
+          PdfExport exporter = new PdfExportImpl();
+
+          urlFactory.init(xcontext);
+          xcontext.setURLFactory(urlFactory);
+          xcontext.setDoc(invoiceDocument);
+
+          ByteArrayOutputStream pdfStream = new ByteArrayOutputStream(4096);
+
+          exporter.exportToPDF(invoiceDocument, pdfStream, xcontext);
+
+          return pdfStream.toByteArray();
+        } finally {
+          velocityContext.put('request', currentRequest);
+          xcontext.setURLFactory(currentURLFactory);
+          velocityContext.put('doc', currentXWikiDocument.newDocument(xcontext));
+          velocityContext.put('tdoc', velocityContext.get('doc'));
+          xcontext.setDoc(currentXWikiDocument);
+        }
+    }
+
+    public XWikiDocument getConfigurationDocument() throws XWikiException
+    {
+        XWikiContext xcontext = this.xcontextProvider.get();
+
+        return xcontext.getWiki()
+                .getDocument(new DocumentReference(xcontext.getWikiId(), "Invoices", "WebHome"), xcontext);
+    }
+
+    public BaseObject getConfigurationObject() throws XWikiException
+    {
+        return getConfigurationDocument().getXObject(CONFIGURATIONCLASS_REFERENCE);
     }
 
     public Map&lt;String, Object&gt; getConfiguration() throws XWikiException
     {
-        XWikiContext xcontext = this.xcontextProvider.get();
-
-        // Get invoice document
-        XWikiDocument homeDocument =
-            xcontext.getWiki()
-                .getDocument(new DocumentReference(xcontext.getWikiId(), "Invoices", "WebHome"), xcontext);
-
-        BaseObject configurationObject = homeDocument.getXObject(CONFIGURATIONCLASS_REFERENCE);
+        BaseObject configurationObject = getConfigurationObject();
 
         Map&lt;String, Object&gt; configuration = new HashMap&lt;String, Object&gt;();
 
         // The email to use as sender
         configuration.put("email", configurationObject.getStringValue("email"));
+        configuration.put("adress", configurationObject.getStringValue("adress"));
 
         // The mapping used to associate a price to a field value in the user profile
         String invoiceField = configurationObject.getStringValue("invoiceField");
@@ -700,11 +899,16 @@ public class InvoiceManager
         return configuration;
     }
 
-    public void addInvoice(Map&lt;String, Object&gt; invoiceMap, String comment) throws QueryException, XWikiException
+    public void addInvoice(Map&lt;String, Object&gt; invoiceMap, Map&lt;String, Object&gt; invoiceProductMap, String comment) throws QueryException, XWikiException
     {
         Long number = (Long) invoiceMap.remove("number");
         if (number == null) {
             number = Long.valueOf(getNewNumber());
+        }
+
+        Date date = (Date) invoiceMap.remove("date");
+        if (date == null) {
+            invoiceMap.put('date', new Date());
         }
 
         XWikiContext xcontext = this.xcontextProvider.get();
@@ -714,13 +918,19 @@ public class InvoiceManager
             xcontext.getWiki().getDocument(new DocumentReference(xcontext.getWikiId(), "Invoices", "Invoice" + number),
                 xcontext);
         BaseObject invoiceObject = invoiceDocument.getXObject(Invoice.INVOICECLASS_REFERENCE, true, xcontext);
+        BaseObject invoiceProductObject = invoiceDocument.getXObject(Invoice.INVOICEPRODUCTCLASS_REFERENCE, true, xcontext);
 
         // Add number
         invoiceObject.set("number", number, xcontext);
 
-        // Add parameters
+        // Add Invoice parameters
         for (Map.Entry&lt;String, Object&gt; entry : invoiceMap.entrySet()) {
             invoiceObject.set(entry.getKey(), entry.getValue(), xcontext);
+        }
+
+        // Add Invoice product parameters
+        for (Map.Entry&lt;String, Object&gt; entry : invoiceProductMap.entrySet()) {
+            invoiceProductObject.set(entry.getKey(), entry.getValue(), xcontext);
         }
 
         // Save document
@@ -792,6 +1002,7 @@ import javax.inject.Singleton;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.xwiki.bridge.event.DocumentCreatingEvent;
+import org.xwiki.bridge.event.DocumentUpdatingEvent;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.observation.AbstractEventListener;
 import org.xwiki.observation.event.Event;
@@ -813,7 +1024,7 @@ public class InvoiceResolverListener extends AbstractEventListener
     public InvoiceResolverListener()
     {
         super(InvoiceResolverListener.class.getName() + InvoiceResolverListener.class.hashCode(),
-            new DocumentCreatingEvent());
+            new DocumentCreatingEvent(), new DocumentUpdatingEvent());
     }
 
     @Override
@@ -856,6 +1067,9 @@ public class InvoiceResolverListener extends AbstractEventListener
                     this.logger.error("Failed to update invoice document [{}]", customerUser, e);
                 }
             }
+
+            invoice.updateTotalPrice();
+            invoice.updateFirstProductName();
         }
     }
 }
@@ -886,6 +1100,14 @@ public class InvoiceScriptService implements ScriptService
     @Inject
     private InvoiceManager invoiceManager;
 
+    @Inject
+    private Provider&lt;XWikiContext&gt; xcontextProvider;
+
+    public def getConfigurationDocument() throws XWikiException
+    {
+        return this.invoiceManager.getConfigurationDocument().newDocument(this.xcontextProvider.get());
+    }
+
     public long getNewNumber() throws QueryException
     {
         return this.invoiceManager.getNewNumber();
@@ -896,9 +1118,9 @@ public class InvoiceScriptService implements ScriptService
         return this.invoiceManager.getInvoice(number);
     }
 
-    public void addInvoice(Map&lt;String, Object&gt; invoiceMap, String comment) throws QueryException, XWikiException
+    public void addInvoice(Map&lt;String, Object&gt; invoiceMap, Map&lt;String, Object&gt; invoiceProductMap, String comment) throws QueryException, XWikiException
     {
-        this.invoiceManager.addInvoice(invoiceMap, comment);
+        this.invoiceManager.addInvoice(invoiceMap, invoiceProductMap, comment);
     }
 
     public void notify(long number) throws XWikiException
