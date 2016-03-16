@@ -43,6 +43,7 @@
     <dependency>
       <groupId>org.xwiki.contrib.showhide</groupId>
       <artifactId>showhide-macro</artifactId>
+      <type>xar</type>
       <version>2.0</version>
     </dependency>
   </dependencies>
