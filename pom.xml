@@ -39,6 +39,13 @@
     <!-- Don't run CLIRR here since there's no Java code. -->
     <xwiki.clirr.skip>true</xwiki.clirr.skip>
   </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.xwiki.contrib.showhide</groupId>
+      <artifactId>showhide-macro</artifactId>
+      <version>2.0</version>
+    </dependency>
+  </dependencies>
   <developers>
     <developer>
       <id>tmortagne</id>
