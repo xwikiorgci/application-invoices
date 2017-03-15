@@ -27,7 +27,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
-    <version>7.4-8</version>
+    <version>7.4-12</version>
   </parent>
   <groupId>org.xwiki.contrib.invoices</groupId>
   <artifactId>application-invoices</artifactId>
@@ -38,6 +38,10 @@
   <properties>
     <!-- Don't run CLIRR here since there's no Java code. -->
     <xwiki.clirr.skip>true</xwiki.clirr.skip>
+
+    <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
+    <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
+    <xwiki.issueManagement.url>https://jira.xwiki.org/jira/browse/INVOICES</xwiki.issueManagement.url>
   </properties>
   <dependencies>
     <dependency>
@@ -89,6 +93,23 @@
           </transformationSets>
         </configuration>
       </plugin>
+
+      <!-- We don't care about the Java version for XAR extensions -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-java</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -98,9 +119,4 @@
     <url>https://github.com/xwiki-contrib/application-invoices</url>
     <tag>HEAD</tag>
   </scm>
-
-  <issueManagement>
-   <system>jira</system>
-   <url>http://jira.xwiki.org/jira/browse/INVOICES</url>
- </issueManagement>
 </project>
