@@ -156,10 +156,10 @@
       </email>
     </class>
     <property>
-      <adress></adress>
+      <adress/>
     </property>
     <property>
-      <email></email>
+      <email/>
     </property>
   </object>
 </xwikidoc>
