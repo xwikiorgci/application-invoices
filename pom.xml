@@ -27,7 +27,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-platform</artifactId>
-    <version>7.4-12</version>
+    <version>7.4-13</version>
   </parent>
   <groupId>org.xwiki.contrib.invoices</groupId>
   <artifactId>application-invoices</artifactId>
@@ -40,8 +40,7 @@
     <xwiki.clirr.skip>true</xwiki.clirr.skip>
 
     <xwiki.release.jira.skip>false</xwiki.release.jira.skip>
-    <xwiki.issueManagement.system>jira</xwiki.issueManagement.system>
-    <xwiki.issueManagement.url>https://jira.xwiki.org/browse/INVOICES</xwiki.issueManagement.url>
+    <xwiki.issueManagement.jira.id>INVOICES</xwiki.issueManagement.jira.id>
   </properties>
   <dependencies>
     <dependency>
