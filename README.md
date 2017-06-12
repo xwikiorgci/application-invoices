@@ -11,4 +11,4 @@ Application to manage invoices.
 * License: LGPL 2.1
 * Translations: http://l10n.xwiki.org/xwiki/bin/view/Contrib/Invoices
 * Sonar Dashboard: N/A
-* Continuous Integration Status: [![Build Status](http://ci.xwiki.org/buildStatus/icon?job=Contrib%20-%20Invoices)](http://ci.xwiki.org/job/Contrib%20-%20Invoices/)
+* Continuous Integration Status: [![Build Status](http://ci.xwiki.org/job/XWiki%20Contrib/job/application-invoices/job/master/badge/icon)](http://ci.xwiki.org/job/XWiki%20Contrib/job/application-invoices/job/master/)
