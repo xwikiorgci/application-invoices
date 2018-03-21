@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 -->
 
-<xwikidoc version="1.2" reference="InvoicesCode.InvoiceSheet" locale="">
+<xwikidoc version="1.3" reference="InvoicesCode.InvoiceSheet" locale="">
   <web>InvoicesCode</web>
   <name>InvoiceSheet</name>
   <language/>
@@ -31,10 +31,10 @@
   <parent>InvoiceClass</parent>
   <author>xwiki:XWiki.Admin</author>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <date>1474981669000</date>
-  <contentUpdateDate>1474981669000</contentUpdateDate>
+  <date>1494508457000</date>
+  <contentUpdateDate>1494508457000</contentUpdateDate>
   <version>1.1</version>
-  <title>$services.localization.render("invoices.${doc.getValue('type')}.name", [${doc.getValue('number')}])#if ("$!doc.getValue('firstProduct')" != '') - $doc.getValue('firstProduct')#end</title>
+  <title>$services.localization.render("invoices.${doc.getValue('type')}.name", ["${doc.getValue('number')}"])#if ("$!doc.getValue('firstProduct')" != '') - $doc.getValue('firstProduct')#end</title>
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
@@ -50,6 +50,40 @@
 {{/velocity}}
 
 {{velocity}}
+#if ($xcontext.action == 'view')
+  #if ($request.iaction_cancel)
+    ## Remove products
+    #set($void = $doc.removeObjects('InvoicesCode.InvoiceProductClass'))
+    ## Reset invoice
+    #set($void = $doc.set('customer_user', ''))
+    #set($void = $doc.set('totalPrice', ''))
+    #set($void = $doc.set('customer_address', ''))
+    #set($void = $doc.set('currency', ''))
+    #set($void = $doc.set('customer_name', ''))
+    #set($void = $doc.set('customer_company', ''))
+    #set($void = $doc.set('customer_email', ''))
+    #set($void = $doc.set('extra', ''))
+    #set($void = $doc.set('firstProduct', $services.localization.render('invoices.sheet.action.cancel.label')))
+    ## Save
+    #set($void = $doc.save($services.localization.render('invoices.sheet.action.cancel.comment')))
+    ## Message
+    {{success}}$services.localization.render('invoices.sheet.action.cancel.success'){{/success}}
+  #elseif ($request.iaction_reimbursement)
+    #set($comment = $services.localization.render('invoices.sheet.action.reimbursement.comment', ["$doc.getValue('number')"]))
+    #set($reimbursementNumber = $services.invoice.createReimbursementFromInvoice($doc.getValue('number'), $comment))
+$reimbursementNumber
+    #if ($reimbursementNumber)
+      #set($reimbursementReference = $services.invoice.getInvoiceReference($reimbursementNumber))
+$reimbursementReference
+      #set($redirect = $xwiki.getURL($reimbursementReference))
+$redirect
+      $response.sendRedirect($redirect)
+    #else
+      {{error}}$services.localization.render('invoices.sheet.action.reimbursement.error'){{/error}}
+    #end
+  #end
+#end
+
 ## wiki=true is mostly here because of display() calls which often generate inner {{html}} macros
 {{html wiki="true"}}
 #set ($discard = $doc.use('InvoicesCode.InvoiceClass'))
@@ -146,7 +180,7 @@
   #if ($xcontext.action == 'edit')
     &lt;input type="hidden" name="InvoicesCode.InvoiceClass_0_number" value="$invoiceNumber"/&gt;
   #end
-  &lt;p&gt;&lt;u&gt;$services.localization.render("invoices.${invoiceType}.name", 'html/5.0', [$invoiceNumber])&lt;/u&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;u&gt;$services.localization.render("invoices.${invoiceType}.name", 'html/5.0', ["$invoiceNumber"])&lt;/u&gt;&lt;/p&gt;
 
   &lt;table width="100%" style="padding-bottom:3em"&gt;
     #set($vatTotals = {})
@@ -249,7 +283,24 @@
   $doc.display('extra')
 
   #if ($xcontext.action == 'view')
+    &lt;hr/&gt;
+
+    ## PDF
     &lt;a href="$doc.getURL('export', 'format=pdf&amp;pdfcover=0&amp;pdftoc=0&amp;pdfheader=0&amp;pdffooter=0&amp;comments=0&amp;attachments=0')"&gt;$services.localization.render('invoices.export.pdf', 'html/5.0', [])&lt;/a&gt;
+
+    #if ($doc.getObject('InvoicesCode.InvoiceProductClass'))
+    &lt;div class="buttons"&gt;
+      &lt;form&gt;
+        ## Create reimbursement
+        #if ($doc.getValue('type') == 'invoice')
+          &lt;input class="btn btn-info" name="iaction_reimbursement" type="submit" value="$escapetool.xml($services.localization.render('invoices.sheet.action.reimbursement.button'))"/&gt;
+        #end
+
+        ## Cancel
+        &lt;input class="btn btn-default cancel" name="iaction_cancel" type="submit" value="$escapetool.xml($services.localization.render('invoices.sheet.action.cancel.button'))"/&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+    #end
   #end
 &lt;/div&gt;
 {{/html}}
