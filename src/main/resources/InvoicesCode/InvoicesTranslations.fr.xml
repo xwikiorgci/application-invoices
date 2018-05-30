@@ -68,6 +68,7 @@ InvoicesCode.InvoiceProductTemplateClass_vat=TVA
 InvoicesCode.InvoiceProductTemplateClass_type=Type
 InvoicesCode.InvoiceProductTemplateClass_type_invoice=Facture
 InvoicesCode.InvoiceProductTemplateClass_type_reimbursement=Remboursement
+
 # Live table generic keys
 invoices.livetable.doc.title=Titre
 invoices.livetable.doc.name=Nom
@@ -84,6 +85,7 @@ invoices.livetable._actions=Actions
 invoices.livetable._actions.edit=Editer
 invoices.livetable._actions.delete=Supprimer
 invoices.livetable.emptyvalue=-
+
 # Live table specific keys
 invoices.livetable.number=Nombre
 invoices.livetable.customer_user=Client
@@ -96,18 +98,21 @@ invoices.livetable.currency=Devise
 invoices.livetable.totalPrice=Total (HT)
 invoices.livetable.type=Type
 invoices.livetable.firstProduct=Produit/Service
+
 # UI
 invoices.description=Application pour gérer et créer des factures (ou des remboursements). Elle produit aussi des notifications par mail lors de la création de nouvelles factures.
 invoices.actions=Actions
 invoices.actions.invoice=Nouvelle facture
 invoices.actions.invoice.empty=Vide
-invoices.actions.reimbursement=Nouveau remboursement
-invoices.actions.reimbursement.empty=Vide
+invoices.actions.reimboursement=Nouveau remboursement
+invoices.actions.reimboursement.empty=Vide
 invoices.invoices=Factures
+
 # User profile
 platform.core.profile.category.invoices=Factures
 platform.core.profile.section.invoicesManagement=Client
 platform.core.profile.section.invoicesElements=Factures
+
 # Sheet
 invoices.invoice.name=Facture {0}
 invoices.reimbursement.name=Remboursement {0}
@@ -119,17 +124,9 @@ invoices.edit.vatValue=TVA - Montant calculé automatiquement
 invoices.vatPercent=TVA à {0}%
 invoices.totalWithTaxes=Total (TTC)
 invoices.totalWithoutTaxes=Total (HT)
-invoices.sheet.action.reimbursement.button=Rembourser
-invoices.sheet.action.reimbursement.error=La création du remboursement a échoué
-invoices.sheet.action.reimbursement.comment=Remboursement de la facture {0}
-invoices.sheet.action.cancel.button=Annuler
-invoices.sheet.action.cancel.label=Facture annulée
-invoices.sheet.action.cancel.success=La facture a été annulée
-invoices.sheet.action.cancel.comment=Annulation de la facture
+
 # Misc
-invoices.addcustomerobject=Ajouter un objet client
-invoices.actions.reimboursement=Nouveau remboursement
-invoices.actions.reimboursement.empty=Vide</content>
+invoices.addcustomerobject=Ajouter un objet client</content>
   <object>
     <name>InvoicesCode.InvoicesTranslations</name>
     <number>0</number>
