@@ -31,7 +31,7 @@
   <parent>Invoices.WebHome</parent>
   <author>xwiki:XWiki.Admin</author>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <date>1515245758000</date>
+  <date>1537976710000</date>
   <contentUpdateDate>1442493198000</contentUpdateDate>
   <version>1.1</version>
   <title/>
@@ -707,8 +707,8 @@ public class InvoiceManager
             if (customerObject != null) {
                 // If any user set overwrite information with it
                 String customer_user = customerObject.getStringValue("customer_user");
-                if (StringUtils.isNoneEmpty(customer_user)) {
-                    setInvoiceCustomer(invoiceCustomer, this.resolver.resolve(customer_user));
+                if (StringUtils.isNotEmpty(customer_user)) {
+                    setInvoiceCustomer(invoiceCustomer, this.resolver.resolve(customer_user), users);
                 }
 
                 // Overwrite with explicit properties
