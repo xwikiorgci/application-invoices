@@ -100,7 +100,7 @@ invoices.livetable.type=Type
 invoices.livetable.firstProduct=Produit/Service
 
 # UI
-invoices.description=Application pour gérer et créer des factures (ou des remboursements). Elle produit aussi des notifications par mail lors de la création de nouvelles factures.
+invoices.description=Application pour gérer et créer des factures (ou des remboursements). Elle produit aussi des notifications par courriel lors de la création de nouvelles factures.
 invoices.actions=Actions
 invoices.actions.invoice=Nouvelle facture
 invoices.actions.invoice.empty=Vide
