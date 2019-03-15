@@ -39,6 +39,93 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
-  <content></content>
+  <content># Class fields
+InvoicesCode.InvoiceClass_number=Номер счёта
+InvoicesCode.InvoiceClass_customer_user=Клиент
+InvoicesCode.InvoiceClass_customer_company=Название компании клиента
+InvoicesCode.InvoiceClass_customer_name=Имя клиента
+InvoicesCode.InvoiceClass_customer_address=Адрес клиента
+InvoicesCode.InvoiceClass_date=Дата
+InvoicesCode.InvoiceClass_product=Товар/Услуга
+InvoicesCode.InvoiceClass_price=Цена (без учёта налогов)
+InvoicesCode.InvoiceClass_vat=НДС
+InvoicesCode.InvoiceClass_currency=Валюта
+InvoicesCode.InvoiceClass_extra=Дополнительно
+InvoicesCode.InvoiceClass_type=Тип
+InvoicesCode.InvoiceClass_type_invoice=Счёт
+InvoicesCode.InvoiceClass_type_reimbursement=Возврат
+InvoicesCode.InvoiceCustomerClass_customer_user=Клиент (другой пользователь)
+InvoicesCode.InvoiceCustomerClass_customer_email=Email клиента
+InvoicesCode.InvoiceCustomerClass_customer_address=Адрес клиента
+InvoicesCode.InvoiceCustomerClass_customer_name=Имя клиента
+InvoicesCode.InvoiceCustomerClass_customer_company=Название компании клиента
+InvoicesCode.InvoiceProductClass_product=Товар/Услуга
+InvoicesCode.InvoiceProductClass_price=Цена
+InvoicesCode.InvoiceProductClass_vat=НДС
+InvoicesCode.InvoiceProductTemplateClass_product=Товар/Услуга
+InvoicesCode.InvoiceProductTemplateClass_price=Цена (без учёта налогов)
+InvoicesCode.InvoiceProductTemplateClass_vat=НДС
+InvoicesCode.InvoiceProductTemplateClass_type=Тип
+InvoicesCode.InvoiceProductTemplateClass_type_invoice=Счёт
+InvoicesCode.InvoiceProductTemplateClass_type_reimbursement=Возврат
+
+# Live table generic keys
+invoices.livetable.doc.title=Заголовок
+invoices.livetable.doc.name=Имя
+invoices.livetable.doc.space=Пространство
+invoices.livetable.doc.fullname=Полное имя
+invoices.livetable.doc.author=Автор
+invoices.livetable.doc.creator=Создатель
+invoices.livetable.doc.date=Дата изменения
+invoices.livetable.doc.creationDate=Дата создания
+invoices.livetable._avatar=Аватар
+invoices.livetable._images=Изображения
+invoices.livetable._attachments=Вложения
+invoices.livetable._actions=Действия
+invoices.livetable._actions.edit=Правка
+invoices.livetable._actions.delete=Удалить
+invoices.livetable.emptyvalue=-
+
+# Live table specific keys
+invoices.livetable.number=Номер
+invoices.livetable.customer_user=Клиент
+invoices.livetable.customer_company=Название компании
+invoices.livetable.customer_name=Имя клиента
+invoices.livetable.customer_address=Адрес клиента
+invoices.livetable.date=Дата
+invoices.livetable.vat=НДС
+invoices.livetable.currency=Валюта
+invoices.livetable.totalPrice=Итого (без учёта налогов)
+invoices.livetable.type=Тип
+invoices.livetable.firstProduct=Товар/Услуга
+
+# UI
+invoices.description=Приложение для создания новых счетов (или возвратов) и управления ими. А также для генерации email-уведомлений о новых счетах.
+invoices.actions=Действия
+invoices.actions.invoice=Новый счёт
+invoices.actions.invoice.empty=Пусто
+invoices.actions.reimboursement=Новый возврат
+invoices.actions.reimboursement.empty=Пусто
+invoices.invoices=Счета
+
+# User profile
+platform.core.profile.category.invoices=Счета
+platform.core.profile.section.invoicesManagement=Клиент
+platform.core.profile.section.invoicesElements=Счета
+
+# Sheet
+invoices.invoice.name=Счёт {0}
+invoices.reimbursement.name=Возврат {0}
+invoices.export.pdf=Экспорт в PDF
+invoices.edit.showmessage=Изменить данные клиента
+invoices.edit.hidemessage=Скрыть данные клиента
+invoices.edit.totalAuto=автоматически подсчитанное ИТОГО
+invoices.edit.vatValue=НДС - подсчитано автоматически
+invoices.vatPercent=НДС {0}%
+invoices.totalWithTaxes=Итого (включая налоги)
+invoices.totalWithoutTaxes=Итого (без учёта налогов)
+
+# Misc
+invoices.addcustomerobject=Добавить новый объект клиента</content>
   
 </xwikidoc>
