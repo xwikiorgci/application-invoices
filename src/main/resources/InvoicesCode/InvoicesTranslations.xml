@@ -104,8 +104,8 @@ invoices.description=Application to manage and create new invoices (or reimburse
 invoices.actions=Actions
 invoices.actions.invoice=New invoice
 invoices.actions.invoice.empty=Empty
-invoices.actions.reimboursement=New reimboursement
-invoices.actions.reimboursement.empty=Empty
+invoices.actions.reimbursement=New reimboursement
+invoices.actions.reimbursement.empty=Empty
 invoices.invoices=Invoices
 
 # User profile
@@ -124,6 +124,13 @@ invoices.edit.vatValue=VAT - Automatically calculated
 invoices.vatPercent=VAT {0}%
 invoices.totalWithTaxes=Total (Including taxes)
 invoices.totalWithoutTaxes=Total (Excluding taxes)
+invoices.sheet.action.reimbursement.button=Reimburse
+invoices.sheet.action.reimbursement.error=Reimburse creation failed
+invoices.sheet.action.reimbursement.comment=Invoice {} reimbursement
+invoices.sheet.action.cancel.button=Cancel
+invoices.sheet.action.cancel.label=Invoice canceled
+invoices.sheet.action.cancel.success=The invoice has been canceled
+invoices.sheet.action.cancel.comment=Invoice cancellation
 
 # Misc
 invoices.addcustomerobject=Add new customer object</content>
