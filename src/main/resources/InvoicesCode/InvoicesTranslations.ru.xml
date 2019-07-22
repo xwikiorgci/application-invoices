@@ -104,8 +104,8 @@ invoices.description=Приложение для создания новых с�
 invoices.actions=Действия
 invoices.actions.invoice=Новый счёт
 invoices.actions.invoice.empty=Пусто
-invoices.actions.reimboursement=Новый возврат
-invoices.actions.reimboursement.empty=Пусто
+### Missing: invoices.actions.reimbursement=New reimboursement
+### Missing: invoices.actions.reimbursement.empty=Empty
 invoices.invoices=Счета
 
 # User profile
@@ -124,6 +124,13 @@ invoices.edit.vatValue=НДС - подсчитано автоматически
 invoices.vatPercent=НДС {0}%
 invoices.totalWithTaxes=Итого (включая налоги)
 invoices.totalWithoutTaxes=Итого (без учёта налогов)
+### Missing: invoices.sheet.action.reimbursement.button=Reimburse
+### Missing: invoices.sheet.action.reimbursement.error=Reimburse creation failed
+### Missing: invoices.sheet.action.reimbursement.comment=Invoice {} reimbursement
+### Missing: invoices.sheet.action.cancel.button=Cancel
+### Missing: invoices.sheet.action.cancel.label=Invoice canceled
+### Missing: invoices.sheet.action.cancel.success=The invoice has been canceled
+### Missing: invoices.sheet.action.cancel.comment=Invoice cancellation
 
 # Misc
 invoices.addcustomerobject=Добавить новый объект клиента</content>

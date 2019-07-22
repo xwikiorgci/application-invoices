@@ -104,8 +104,8 @@ invoices.description=Application pour gérer et créer des factures (ou des remb
 invoices.actions=Actions
 invoices.actions.invoice=Nouvelle facture
 invoices.actions.invoice.empty=Vide
-invoices.actions.reimboursement=Nouveau remboursement
-invoices.actions.reimboursement.empty=Vide
+### Missing: invoices.actions.reimbursement=New reimboursement
+### Missing: invoices.actions.reimbursement.empty=Empty
 invoices.invoices=Factures
 
 # User profile
@@ -124,6 +124,13 @@ invoices.edit.vatValue=TVA - Montant calculé automatiquement
 invoices.vatPercent=TVA à {0}%
 invoices.totalWithTaxes=Total (TTC)
 invoices.totalWithoutTaxes=Total (HT)
+### Missing: invoices.sheet.action.reimbursement.button=Reimburse
+### Missing: invoices.sheet.action.reimbursement.error=Reimburse creation failed
+### Missing: invoices.sheet.action.reimbursement.comment=Invoice {} reimbursement
+### Missing: invoices.sheet.action.cancel.button=Cancel
+### Missing: invoices.sheet.action.cancel.label=Invoice canceled
+### Missing: invoices.sheet.action.cancel.success=The invoice has been canceled
+### Missing: invoices.sheet.action.cancel.comment=Invoice cancellation
 
 # Misc
 invoices.addcustomerobject=Ajouter un objet client</content>
