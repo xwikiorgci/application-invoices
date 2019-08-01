@@ -55,7 +55,7 @@ InvoicesCode.InvoiceClass_type=Type
 InvoicesCode.InvoiceClass_type_invoice=Facture
 InvoicesCode.InvoiceClass_type_reimbursement=Remboursement
 InvoicesCode.InvoiceCustomerClass_customer_user=Client (autre utilisateur)
-InvoicesCode.InvoiceCustomerClass_customer_email=Email du client
+InvoicesCode.InvoiceCustomerClass_customer_email=Courriel du client
 InvoicesCode.InvoiceCustomerClass_customer_address=Adresse du client
 InvoicesCode.InvoiceCustomerClass_customer_name=Nom du client
 InvoicesCode.InvoiceCustomerClass_customer_company=Nom de la société du client
@@ -104,8 +104,8 @@ invoices.description=Application pour gérer et créer des factures (ou des remb
 invoices.actions=Actions
 invoices.actions.invoice=Nouvelle facture
 invoices.actions.invoice.empty=Vide
-### Missing: invoices.actions.reimbursement=New reimboursement
-### Missing: invoices.actions.reimbursement.empty=Empty
+invoices.actions.reimbursement=Nouveau remboursement
+invoices.actions.reimbursement.empty=Vide
 invoices.invoices=Factures
 
 # User profile
@@ -118,19 +118,19 @@ invoices.invoice.name=Facture {0}
 invoices.reimbursement.name=Remboursement {0}
 invoices.export.pdf=Exporter en PDF
 invoices.edit.showmessage=Modifier les informations client
-invoices.edit.hidemessage=Masquer les informations du client
+invoices.edit.hidemessage=Cacher les informations sur le client
 invoices.edit.totalAuto=TOTAL calculé automatiquement
 invoices.edit.vatValue=TVA - Montant calculé automatiquement
 invoices.vatPercent=TVA à {0}%
 invoices.totalWithTaxes=Total (TTC)
 invoices.totalWithoutTaxes=Total (HT)
-### Missing: invoices.sheet.action.reimbursement.button=Reimburse
-### Missing: invoices.sheet.action.reimbursement.error=Reimburse creation failed
-### Missing: invoices.sheet.action.reimbursement.comment=Invoice {} reimbursement
-### Missing: invoices.sheet.action.cancel.button=Cancel
-### Missing: invoices.sheet.action.cancel.label=Invoice canceled
-### Missing: invoices.sheet.action.cancel.success=The invoice has been canceled
-### Missing: invoices.sheet.action.cancel.comment=Invoice cancellation
+invoices.sheet.action.reimbursement.button=Rembourser
+invoices.sheet.action.reimbursement.error=La création du remboursement a échoué
+invoices.sheet.action.reimbursement.comment=Remboursement de la facture {0}
+invoices.sheet.action.cancel.button=Annuler
+invoices.sheet.action.cancel.label=Facture annulée
+invoices.sheet.action.cancel.success=La facture a été annulée
+invoices.sheet.action.cancel.comment=Annulation de la facture
 
 # Misc
 invoices.addcustomerobject=Ajouter un objet client</content>
