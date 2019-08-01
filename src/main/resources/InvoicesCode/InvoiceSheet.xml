@@ -31,8 +31,8 @@
   <parent>InvoiceClass</parent>
   <author>xwiki:XWiki.Admin</author>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <date>1494508457000</date>
-  <contentUpdateDate>1494508457000</contentUpdateDate>
+  <date>1561723695000</date>
+  <contentUpdateDate>1561723695000</contentUpdateDate>
   <version>1.1</version>
   <title>$services.localization.render("invoices.${doc.getValue('type')}.name", ["${doc.getValue('number')}"])#if ("$!doc.getValue('firstProduct')" != '') - $doc.getValue('firstProduct')#end</title>
   <comment/>
@@ -211,7 +211,7 @@ $redirect
         ## Price total
         #set($total = $total + $price)
 
-        ## Price total TVA included
+        ## Price total VAT included
         #set($totalVATIncluded = $totalVATIncluded + $price + $vatValue)
       #end
 
@@ -224,7 +224,7 @@ $redirect
           $productObject.product
         &lt;/td&gt;
         &lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;
-          #if ($xcontext.action == 'edit')      
+          #if ($xcontext.action == 'edit')
             &lt;label for="InvoicesCode.InvoiceClass_${productObject.number}_vat"&gt;$doc.displayPrettyName('vat', $productObject)&lt;/label&gt;
             $productObject.vat
           #else
@@ -232,7 +232,7 @@ $redirect
           #end
         &lt;/td&gt;
         &lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;
-          #if ($xcontext.action == 'edit')      
+          #if ($xcontext.action == 'edit')
             &lt;label for="InvoicesCode.InvoiceClass_${productObject.number}_price"&gt;$escapetool.xml($doc.displayPrettyName('price', $productObject))&lt;/label&gt;
           #end
           $productObject.price $productObject.currency
@@ -253,11 +253,11 @@ $redirect
       &lt;/td&gt;
     &lt;/tr&gt;
 
-    ## Totals by TVA
+    ## Totals by VAT
     #foreach($vatTotalEntry in $vatTotals.entrySet())
       &lt;tr style="height:2em; display: table-row;vertical-align:middle;"&gt;
         &lt;td colspan="2" align="right"&gt;$services.localization.render('invoices.vatPercent', 'html/5.0', [$vatTotalEntry.key])&lt;/td&gt;
-     
+
         &lt;td width="75" align="center" bgcolor="#CCCCCC"&gt;
           #if ($xcontext.action == 'edit')
             ($services.localization.render('invoices.edit.vatValue', 'html/5.0', []))
