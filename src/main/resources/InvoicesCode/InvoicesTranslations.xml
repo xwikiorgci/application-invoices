@@ -104,7 +104,7 @@ invoices.description=Application to manage and create new invoices (or reimburse
 invoices.actions=Actions
 invoices.actions.invoice=New invoice
 invoices.actions.invoice.empty=Empty
-invoices.actions.reimbursement=New reimboursement
+invoices.actions.reimbursement=New reimbursement
 invoices.actions.reimbursement.empty=Empty
 invoices.invoices=Invoices
 
@@ -115,7 +115,7 @@ platform.core.profile.section.invoicesElements=Invoices
 
 # Sheet
 invoices.invoice.name=Invoice {0}
-invoices.reimbursement.name=Reimboursement {0}
+invoices.reimbursement.name=Reimbursement {0}
 invoices.export.pdf=Export as PDF
 invoices.edit.showmessage=Modify customer informations
 invoices.edit.hidemessage=Hide customer informations
