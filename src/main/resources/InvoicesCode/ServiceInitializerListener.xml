@@ -278,6 +278,8 @@ public class Invoice
 
     private InvoiceProduct firstProduct;
 
+    private List&lt;InvoiceProduct&gt; products;
+
     public static boolean isInvoice(XWikiDocument document)
     {
         return document.getXObject(INVOICECLASS_REFERENCE) != null;
@@ -379,8 +381,6 @@ public class Invoice
         return getFirstProduct().getProduct();
     }
 
-    // Write
-
     protected BaseObject getXObject()
     {
         if (this.xobject == null) {
@@ -399,10 +399,25 @@ public class Invoice
         return this.firstProduct;
     }
 
+    public List&lt;InvoiceProduct&gt; getProducts()
+    {
+        if (this.products == null) {
+            List&lt;BaseObject&gt; xobjects = this.document.getXObjects(INVOICEPRODUCTCLASS_REFERENCE);
+            this.products = new ArrayList(xobjects.size());
+            for (BaseObject xobject : xobjects) {
+                this.products.add(new InvoiceProduct(this.document, xobject));
+            }
+        }
+
+        return this.products;
+    }
+
     protected XWikiDocument getDocument()
     {
         return this.document;
     }
+
+    // Write
 
     protected void setNumber(long number)
     {
@@ -480,9 +495,11 @@ public class Invoice
         double total = 0.0;
 
         for (BaseObject productObject : getDocument().getXObjects(INVOICEPRODUCTCLASS_REFERENCE)) {
-            Double productPrice = productObject.getDoubleValue("price");
-            if (productPrice != null) {
-                total += productPrice;
+            if (productObject != null) {
+                Double productPrice = productObject.getDoubleValue("price");
+                if (productPrice != null) {
+                    total += productPrice;
+                }
             }
         }
 
@@ -866,6 +883,7 @@ public class InvoiceManager
           PdfExport exporter = new PdfExportImpl();
 
           urlFactory.init(xcontext);
+          xcontext.setRequest(request);
           xcontext.setURLFactory(urlFactory);
           xcontext.setDoc(invoiceDocument);
           xcontext.setAction('export');
@@ -964,10 +982,25 @@ public class InvoiceManager
 
     public Long createReimbursementFromInvoice(long invoiceNumber, String comment)
     {
-        XWikiContext xcontext = this.xcontextProvider.get();
+        return  createReimbursementFromInvoice(invoiceNumber, 1.0, new Date(), comment);
+    }
 
+    public Long createReimbursementFromInvoice(long invoiceNumber, double priceupdate, Date date, String comment)
+    {
         // Get invoice document
         XWikiDocument invoiceDocument = getDocument(invoiceNumber);
+
+        return createReimbursementFromInvoice(invoiceDocument, priceupdate, date, comment);
+    }
+
+    public Long createReimbursementFromInvoice(XWikiDocument invoiceDocument, double priceupdate, Date date, String comment)
+    {
+        return createReimbursementFromInvoice(invoiceDocument, priceupdate, date, '', comment);
+    }
+
+    public Long createReimbursementFromInvoice(XWikiDocument invoiceDocument, double priceupdate, Date date, String productSuffix, String comment)
+    {
+        XWikiContext xcontext = this.xcontextProvider.get();
 
         // Calculate reimbursement reference
         long reimbursementNumber = getNewNumber();
@@ -978,9 +1011,16 @@ public class InvoiceManager
 
         // Convert it to reimbursement
         Invoice reimbursement = new Invoice(reimbursementDocument);
+        reimbursement.setInvoice(reimbursement.getNumber());
         reimbursement.setNumber(reimbursementNumber);
         reimbursement.setType('reimbursement');
-        reimbursement.setInvoice(invoiceNumber);
+        reimbursement.setDate(date);
+
+        // Update price
+        for (InvoiceProduct product : reimbursement.getProducts()) {
+            product.setPrice(product.price * priceupdate);
+            product.setProduct("${product.product}$productSuffix")
+        }
 
         // Save new reimbursement
         xcontext.getWiki().saveDocument(reimbursementDocument, comment, xcontext);
@@ -1192,6 +1232,21 @@ public class InvoiceScriptService implements ScriptService
     public Long createReimbursementFromInvoice(long number, String comment)
     {
         return this.invoiceManager.createReimbursementFromInvoice(number, comment);
+    }
+
+    public Long createReimbursementFromInvoice(long invoiceNumber, double priceupdate, Date date, String comment)
+    {
+        return this.invoiceManager.createReimbursementFromInvoice(number, priceupdate, date, comment);
+    }
+
+    public Long createReimbursementFromInvoice(XWikiDocument invoiceDocument, double priceupdate, Date date, String comment)
+    {
+        return this.invoiceManager.createReimbursementFromInvoice(invoiceDocument, priceupdate, date, comment);
+    }
+
+    public Long createReimbursementFromInvoice(XWikiDocument invoiceDocument, double priceupdate, Date date, String productSuffix, String comment)
+    {
+        return this.invoiceManager.createReimbursementFromInvoice(invoiceDocument, priceupdate, date, productSuffix, comment);
     }
 }
 

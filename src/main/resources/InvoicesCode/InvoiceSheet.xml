@@ -123,6 +123,7 @@ $redirect
       {{showhide showmessage="$services.localization.render("invoices.edit.showmessage")" hidemessage="$services.localization.render("invoices.edit.hidemessage")"}}
       {{html wiki="true"}}
         ## Company
+        #set($customer_company = $doc.getValue('customer_company'))
         &lt;label for="InvoicesCode.InvoiceClass_0_customer_company"&gt;$escapetool.xml($doc.displayPrettyName('customer_company', false, false))&lt;/label&gt;
         $doc.display('customer_company')
 
@@ -144,6 +145,10 @@ $redirect
         $doc.display('customer_email')
       {{/html}}
       {{/showhide}}
+
+      ## Date
+      &lt;label for="InvoicesCode.InvoiceClass_0_date"&gt;$escapetool.xml($doc.displayPrettyName('date', false, false))&lt;/label&gt;
+      $doc.display('date')
     &lt;/div&gt;
   #else
     ## Adress
@@ -157,10 +162,12 @@ $redirect
       ## Company
       $doc.display('customer_company')
 
-      &lt;br /&gt;
+      #if ($doc.getValue('customer_name') != $doc.getValue('customer_company'))
+        &lt;br /&gt;
 
-      ## Name
-      $doc.display('customer_name')
+        ## Name
+        $doc.display('customer_name')
+      #end
 
       &lt;br /&gt;
 
@@ -168,7 +175,13 @@ $redirect
       $doc.display('customer_address')
 
       ## Date
-      &lt;p&gt;$datetool.format('d/M/yyyy', $doc.creationDate)&lt;/p&gt;
+      &lt;p&gt;
+        #if ($doc.getValue('date'))
+          $datetool.format('d/M/yyyy', $$doc.getValue('date'))
+        #else
+          $datetool.format('d/M/yyyy', $doc.creationDate)
+        #end
+      &lt;/p&gt;
     &lt;/div&gt;
   #end
 

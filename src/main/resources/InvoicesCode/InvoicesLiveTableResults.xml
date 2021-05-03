@@ -46,7 +46,6 @@
 
 {{velocity wiki="false"}}
 #set ($extra = '')
-#set ($params = [])
-#gridresultwithfilter("$!request.classname" $request.collist.split(',') '' "${extra}" $params)
+#gridresultwithfilter("$!request.classname" $request.collist.split(',') '' "${extra}" {})
 {{/velocity}}</content>
 </xwikidoc>

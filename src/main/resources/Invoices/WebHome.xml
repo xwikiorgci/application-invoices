@@ -94,6 +94,7 @@
 #set ($columnsProperties = {
   'number': {"type":"number","size":10,"link":"view"},
   'customer_user': {"type":"text","size":10,"html":true},
+  'date': {"type":"date","html":true},
   'totalPrice': {"type":"number","size":10},
   'type': {"type":"list","size":10},
   'firstProduct': {"type":"text","size":10,"link":"view"}
@@ -108,7 +109,7 @@
   'selectedColumn': 'number',
   'defaultOrder': 'desc'
 })
-#set ($columns = ['number', 'customer_user', 'doc.creationDate', 'totalPrice', 'type', 'firstProduct'])
+#set ($columns = ['number', 'customer_user', 'date', 'totalPrice', 'type', 'firstProduct'])
 #livetable('invoices' $columns $columnsProperties $options)
 {{/velocity}}</content>
   <object>

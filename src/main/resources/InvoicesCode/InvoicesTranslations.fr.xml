@@ -87,7 +87,7 @@ invoices.livetable._actions.delete=Supprimer
 invoices.livetable.emptyvalue=-
 
 # Live table specific keys
-invoices.livetable.number=Nombre
+invoices.livetable.number=Numéro
 invoices.livetable.customer_user=Client
 invoices.livetable.customer_company=Nom de la société
 invoices.livetable.customer_name=Nom du client

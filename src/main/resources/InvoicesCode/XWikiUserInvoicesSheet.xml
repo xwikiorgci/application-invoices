@@ -95,7 +95,8 @@ $xwiki.ssx.use("XWiki.XWikiUserSheet")##
         #set ($columnsProperties = {
           'number': {"type":"number","size":10,"link":"view"},
           'customer_user': {"type":"text","size":10,"html":true},
-          'price': {"type":"number","size":10}
+          'price': {"type":"number","size":10},
+          'date': {"type":"date","html":true}
         })
         #set ($options = {
           'className': 'InvoicesCode.InvoiceClass',
@@ -108,7 +109,7 @@ $xwiki.ssx.use("XWiki.XWikiUserSheet")##
           'defaultOrder': 'desc',
           'extraParams': "&amp;customer_user=$doc"
         })
-        #set ($columns = ['number', 'customer_user', 'doc.creationDate', 'totalPrice'])
+        #set ($columns = ['number', 'customer_user', 'date', 'totalPrice'])
         #livetable('invoices' $columns $columnsProperties $options)
       &lt;/div&gt;
     &lt;/div&gt;
