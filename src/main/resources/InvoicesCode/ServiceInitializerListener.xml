@@ -76,13 +76,15 @@
         <cache>0</cache>
         <disabled>0</disabled>
         <displayType>select</displayType>
+        <freeText>forbidden</freeText>
+        <largeStorage>0</largeStorage>
         <multiSelect>0</multiSelect>
         <name>scope</name>
         <number>3</number>
         <prettyName>Component Scope</prettyName>
         <relationalStorage>0</relationalStorage>
         <separator> </separator>
-        <separators> ,|</separators>
+        <separators>|, </separators>
         <size>1</size>
         <unmodifiable>0</unmodifiable>
         <values>wiki=Current Wiki|user=Current User|global=Global</values>
@@ -870,11 +872,6 @@ public class InvoiceManager
             {
               return "";
             }
-
-            def upgrade(Class clazz)
-            {
-              return null;
-            }
           };
           velocityContext.put('request', request);
           velocityContext.put('doc', invoiceDocument.newDocument(xcontext));
@@ -944,12 +941,12 @@ public class InvoiceManager
 
     public void addInvoice(Map&lt;String, Object&gt; invoiceMap, Map&lt;String, Object&gt; invoiceProductMap, String comment) throws QueryException, XWikiException
     {
-        Long number = (Long) invoiceMap.remove("number");
+        Long number = (Long) invoiceMap.get("number");
         if (number == null) {
             number = Long.valueOf(getNewNumber());
         }
 
-        Date date = (Date) invoiceMap.remove("date");
+        Date date = (Date) invoiceMap.get("date");
         if (date == null) {
             invoiceMap.put('date', new Date());
         }
@@ -1284,6 +1281,7 @@ for (descriptor in descriptors) {
 // Register InvoicesScriptService
 
 descriptors = loader.getComponentsDescriptors(InvoiceScriptService.class)
+
 for (descriptor in descriptors) {
     componentManager.registerComponent(descriptor);
 }

@@ -46,12 +46,16 @@
 {{velocity}}
 #if ($request.iaction == 'create_invoice')
   #set($invoiceNumber = $services.invoice.newNumber)
-  #set($redirect = $xwiki.getURL("${doc.space}.Invoice${invoiceNumber}", "edit", "template=InvoicesCode.InvoiceTemplate&amp;parent=$doc.name&amp;number=$invoiceNumber&amp;type=invoice&amp;xredirect=$escapetool.url($doc.URL)&amp;product=$!{escapetool.url($request.product)}"))
-  $response.sendRedirect($redirect)
+  #if ($invoiceNumber)
+    #set($redirect = $xwiki.getURL("${doc.space}.Invoice${invoiceNumber}", "edit", "template=InvoicesCode.InvoiceTemplate&amp;parent=$doc.name&amp;number=$invoiceNumber&amp;type=invoice&amp;xredirect=$escapetool.url($doc.URL)&amp;product=$!{escapetool.url($request.product)}"))
+    $response.sendRedirect($redirect)
+  #end
 #elseif ($request.iaction == 'create_reimbursement')
   #set($invoiceNumber = $services.invoice.newNumber)
-  #set($redirect = $xwiki.getURL("${doc.space}.Invoice${invoiceNumber}", "edit", "template=InvoicesCode.InvoiceTemplate&amp;parent=$doc.name&amp;number=$invoiceNumber&amp;type=reimbursement&amp;xredirect=$escapetool.url($doc.URL)&amp;product=$!{escapetool.url($request.product)}"))
-  $response.sendRedirect($redirect)
+  #if ($invoiceNumber)
+    #set($redirect = $xwiki.getURL("${doc.space}.Invoice${invoiceNumber}", "edit", "template=InvoicesCode.InvoiceTemplate&amp;parent=$doc.name&amp;number=$invoiceNumber&amp;type=reimbursement&amp;xredirect=$escapetool.url($doc.URL)&amp;product=$!{escapetool.url($request.product)}"))
+    $response.sendRedirect($redirect)
+  #end
 #end
 {{/velocity}}
 

@@ -52,6 +52,7 @@
     <currency>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>currency</name>
       <number>11</number>
       <picker>0</picker>
@@ -67,6 +68,7 @@
       <customDisplay/>
       <disabled>0</disabled>
       <editor>PureText</editor>
+      <hint/>
       <name>customer_address</name>
       <number>11</number>
       <picker>0</picker>
@@ -81,6 +83,7 @@
     <customer_company>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>customer_company</name>
       <number>11</number>
       <picker>0</picker>
@@ -94,6 +97,7 @@
     <customer_email>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>customer_email</name>
       <number>12</number>
       <picker>0</picker>
@@ -107,6 +111,7 @@
     <customer_name>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>customer_name</name>
       <number>11</number>
       <picker>0</picker>
@@ -120,8 +125,12 @@
     <customer_user>
       <cache>0</cache>
       <customDisplay/>
+      <defaultValue/>
       <disabled>0</disabled>
       <displayType>input</displayType>
+      <freeText/>
+      <hint/>
+      <largeStorage>0</largeStorage>
       <multiSelect>0</multiSelect>
       <name>customer_user</name>
       <number>2</number>
@@ -142,7 +151,8 @@
       <customDisplay>{{include reference="AppWithinMinutes.DateDisplayer" /}}</customDisplay>
       <dateFormat>dd/MM/yyyy</dateFormat>
       <disabled>0</disabled>
-      <emptyIsToday>1</emptyIsToday>
+      <emptyIsToday>0</emptyIsToday>
+      <hint/>
       <name>date</name>
       <number>7</number>
       <picker>1</picker>
@@ -158,6 +168,7 @@
       <customDisplay/>
       <disabled>0</disabled>
       <editor>---</editor>
+      <hint/>
       <name>extra</name>
       <number>12</number>
       <picker>0</picker>
@@ -172,6 +183,7 @@
     <firstProduct>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>firstProduct</name>
       <number>11</number>
       <picker>0</picker>
@@ -185,6 +197,7 @@
     <invoice>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>invoice</name>
       <number>13</number>
       <numberType>long</numberType>
@@ -198,6 +211,7 @@
     <number>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>number</name>
       <number>1</number>
       <numberType>long</numberType>
@@ -211,6 +225,7 @@
     <totalPrice>
       <customDisplay/>
       <disabled>0</disabled>
+      <hint/>
       <name>totalPrice</name>
       <number>10</number>
       <numberType>double</numberType>
@@ -224,8 +239,12 @@
     <type>
       <cache>0</cache>
       <customDisplay/>
+      <defaultValue/>
       <disabled>0</disabled>
       <displayType>select</displayType>
+      <freeText/>
+      <hint/>
+      <largeStorage>0</largeStorage>
       <multiSelect>0</multiSelect>
       <name>type</name>
       <number>11</number>
@@ -258,17 +277,29 @@
       <nameField/>
       <validationScript/>
       <sheet>
+        <cache>0</cache>
+        <classname/>
         <customDisplay/>
         <disabled>0</disabled>
+        <displayType>input</displayType>
+        <hint/>
+        <idField/>
+        <multiSelect>0</multiSelect>
         <name>sheet</name>
         <number>1</number>
-        <picker>0</picker>
+        <picker>1</picker>
         <prettyName>Sheet</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators/>
         <size>30</size>
+        <sort>none</sort>
+        <sql/>
         <unmodifiable>0</unmodifiable>
         <validationMessage/>
         <validationRegExp/>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+        <valueField/>
+        <classType>com.xpn.xwiki.objects.classes.PageClass</classType>
       </sheet>
     </class>
     <property>
@@ -290,17 +321,29 @@
       <nameField/>
       <validationScript/>
       <sheet>
+        <cache>0</cache>
+        <classname/>
         <customDisplay/>
         <disabled>0</disabled>
+        <displayType>input</displayType>
+        <hint/>
+        <idField/>
+        <multiSelect>0</multiSelect>
         <name>sheet</name>
         <number>1</number>
-        <picker>0</picker>
+        <picker>1</picker>
         <prettyName>Sheet</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators/>
         <size>30</size>
+        <sort>none</sort>
+        <sql/>
         <unmodifiable>0</unmodifiable>
         <validationMessage/>
         <validationRegExp/>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+        <valueField/>
+        <classType>com.xpn.xwiki.objects.classes.PageClass</classType>
       </sheet>
     </class>
     <property>
