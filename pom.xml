@@ -34,7 +34,7 @@
   <name>Invoices</name>
   <description>Application to manage invoices</description>
   <packaging>xar</packaging>
-  <version>1.8.1-SNAPSHOT</version>
+  <version>1.8.1</version>
   <properties>
     <!-- Don't run CLIRR here since there's no Java code. -->
     <xwiki.clirr.skip>true</xwiki.clirr.skip>
@@ -136,6 +136,6 @@
     <connection>scm:git:git://github.com/xwiki-contrib/application-invoices.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/application-invoices.git</developerConnection>
     <url>https://github.com/xwiki-contrib/application-invoices</url>
-    <tag>HEAD</tag>
+    <tag>application-invoices-1.8.1</tag>
   </scm>
 </project>
