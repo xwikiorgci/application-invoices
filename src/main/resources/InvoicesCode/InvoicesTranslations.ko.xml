@@ -101,38 +101,38 @@ invoices.livetable.firstProduct=이 저장되었지만, 일부 새롭게 실패�
 
 # UI
 invoices.description=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 콜론(:)
-### Missing: invoices.actions=Actions
-### Missing: invoices.actions.invoice=New invoice
-### Missing: invoices.actions.invoice.empty=Empty
-### Missing: invoices.actions.reimbursement=New reimbursement
-### Missing: invoices.actions.reimbursement.empty=Empty
-### Missing: invoices.invoices=Invoices
+invoices.actions=행위
+invoices.actions.invoice=새 송장
+invoices.actions.invoice.empty=비어 있는
+invoices.actions.reimbursement=새로운 환급
+invoices.actions.reimbursement.empty=비어 있는
+invoices.invoices=송장
 
 # User profile
-### Missing: platform.core.profile.category.invoices=Invoices
-### Missing: platform.core.profile.section.invoicesManagement=Customer
-### Missing: platform.core.profile.section.invoicesElements=Invoices
+platform.core.profile.category.invoices=송장
+platform.core.profile.section.invoicesManagement=고객
+platform.core.profile.section.invoicesElements=송장
 
 # Sheet
-### Missing: invoices.invoice.name=Invoice {0}
-### Missing: invoices.reimbursement.name=Reimbursement {0}
-### Missing: invoices.export.pdf=Export as PDF
-### Missing: invoices.edit.showmessage=Modify customer informations
-### Missing: invoices.edit.hidemessage=Hide customer informations
-### Missing: invoices.edit.totalAuto=automatically calculated TOTAL
-### Missing: invoices.edit.vatValue=VAT - Automatically calculated
-### Missing: invoices.vatPercent=VAT {0}%
-### Missing: invoices.totalWithTaxes=Total (Including taxes)
-### Missing: invoices.totalWithoutTaxes=Total (Excluding taxes)
-### Missing: invoices.sheet.action.reimbursement.button=Reimburse
-### Missing: invoices.sheet.action.reimbursement.error=Reimburse creation failed
-### Missing: invoices.sheet.action.reimbursement.comment=Invoice {} reimbursement
-### Missing: invoices.sheet.action.cancel.button=Cancel
-### Missing: invoices.sheet.action.cancel.label=Invoice canceled
-### Missing: invoices.sheet.action.cancel.success=The invoice has been canceled
-### Missing: invoices.sheet.action.cancel.comment=Invoice cancellation
+invoices.invoice.name=송장 {0}
+invoices.reimbursement.name=환급 {0}
+invoices.export.pdf=PDF로 내보내기
+invoices.edit.showmessage=고객 정보 수정
+invoices.edit.hidemessage=고객 정보 숨기기
+invoices.edit.totalAuto=자동으로 계산된 TOTAL
+invoices.edit.vatValue=VAT - 자동 계산
+invoices.vatPercent=부가가치세 {0}%
+invoices.totalWithTaxes=합계(세금 포함)
+invoices.totalWithoutTaxes=합계(세금 별도)
+invoices.sheet.action.reimbursement.button=상환
+invoices.sheet.action.reimbursement.error=환급 생성 실패
+invoices.sheet.action.reimbursement.comment=송장 {} 환급
+invoices.sheet.action.cancel.button=취소
+invoices.sheet.action.cancel.label=송장이 취소되었습니다.
+invoices.sheet.action.cancel.success=청구서가 취소되었습니다
+invoices.sheet.action.cancel.comment=송장 취소
 
 # Misc
-### Missing: invoices.addcustomerobject=Add new customer object
+invoices.addcustomerobject=새 고객 개체 추가
 </content>
   </xwikidoc>
