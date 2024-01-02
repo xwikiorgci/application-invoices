@@ -70,37 +70,37 @@ InvoicesCode.InvoiceProductTemplateClass_type_invoice=송장
 InvoicesCode.InvoiceProductTemplateClass_type_reimbursement=반제
 
 # Live table generic keys
-invoices.livetable.doc.title=삭제 진행 중...
-invoices.livetable.doc.name=삭제 진행 중...
-invoices.livetable.doc.space=삭제 진행 중...
-invoices.livetable.doc.fullname=삭제 진행 중...
-invoices.livetable.doc.author=삭제 진행 중...
-invoices.livetable.doc.creator=삭제 진행 중...
-invoices.livetable.doc.date=삭제 진행 중...
-invoices.livetable.doc.creationDate=삭제 진행 중...
-invoices.livetable._avatar=삭제 진행 중...
-invoices.livetable._images=삭제 진행 중...
-invoices.livetable._attachments=삭제 진행 중...
-invoices.livetable._actions=삭제 진행 중...
-invoices.livetable._actions.edit=삭제 진행 중...
-invoices.livetable._actions.delete=삭제 진행 중...
-invoices.livetable.emptyvalue=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.), 일치하지 않는 물음표(?)
+invoices.livetable.doc.title=제목
+invoices.livetable.doc.name=이름
+invoices.livetable.doc.space=공간
+invoices.livetable.doc.fullname=성명
+invoices.livetable.doc.author=작가
+invoices.livetable.doc.creator=창조자
+invoices.livetable.doc.date=업데이트 날짜
+invoices.livetable.doc.creationDate=생산 일
+invoices.livetable._avatar=화신
+invoices.livetable._images=이미지
+invoices.livetable._attachments=첨부파일
+invoices.livetable._actions=행위
+invoices.livetable._actions.edit=편집하다
+invoices.livetable._actions.delete=삭제
+invoices.livetable.emptyvalue=-
 
 # Live table specific keys
-invoices.livetable.number=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.), 일치하지 않는 물음표(?)
-invoices.livetable.customer_user=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.), 일치하지 않는 물음표(?)
-invoices.livetable.customer_company=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.), 일치하지 않는 물음표(?)
-invoices.livetable.customer_name=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.)
-invoices.livetable.customer_address=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.)
-invoices.livetable.date=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 콜론(:)
-invoices.livetable.vat=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 물음표(?)
-invoices.livetable.currency=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.)
-invoices.livetable.totalPrice=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.)
-invoices.livetable.type=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.)
-invoices.livetable.firstProduct=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 마침표(.)
+invoices.livetable.number=숫자
+invoices.livetable.customer_user=고객
+invoices.livetable.customer_company=회사 이름
+invoices.livetable.customer_name=고객 이름
+invoices.livetable.customer_address=고객 주소
+invoices.livetable.date=날짜
+invoices.livetable.vat=큰 통
+invoices.livetable.currency=통화
+invoices.livetable.totalPrice=총액(세금 제외)
+invoices.livetable.type=유형
+invoices.livetable.firstProduct=제품/서비스
 
 # UI
-invoices.description=이 저장되었지만, 일부 새롭게 실패한 검사가 있습니다: 일치하지 않는 콜론(:)
+invoices.description=새로운 송장(또는 환급)을 관리하고 생성하는 애플리케이션입니다. 또한 새 청구서에 대한 메일 알림도 생성됩니다.
 invoices.actions=행위
 invoices.actions.invoice=새 송장
 invoices.actions.invoice.empty=비어 있는
@@ -128,7 +128,7 @@ invoices.sheet.action.reimbursement.button=상환
 invoices.sheet.action.reimbursement.error=환급 생성 실패
 invoices.sheet.action.reimbursement.comment=송장 {} 환급
 invoices.sheet.action.cancel.button=취소
-invoices.sheet.action.cancel.label=송장이 취소되었습니다.
+invoices.sheet.action.cancel.label=송장이 취소되었습니다
 invoices.sheet.action.cancel.success=청구서가 취소되었습니다
 invoices.sheet.action.cancel.comment=송장 취소
 
